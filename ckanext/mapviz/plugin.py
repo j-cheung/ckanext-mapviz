@@ -5,7 +5,7 @@ import ckan.plugins.toolkit as toolkit
 class MapvizPlugin(plugins.SingletonPlugin):
 	plugins.implements(plugins.IConfigurer)
 	plugins.implements(plugins.IResourceView, inherit=True)
-	plugins.implements(plugins.ITemplateHelpers, inherit=True)
+	# plugins.implements(plugins.ITemplateHelpers, inherit=True)
 
 	# IConfigurer
 
@@ -28,10 +28,10 @@ class MapvizPlugin(plugins.SingletonPlugin):
 	def view_template(self, context, data_dict):
 		return 'base.html'
 
-	# ITemplateHelpers
+	# # ITemplateHelpers
 
-	# Tell CKAN what custom template helper functions this plugin provides,
-	# see the ITemplateHelpers plugin interface.
-	def get_helpers(self):
-		return {'helper': helper}
+	# # Tell CKAN what custom template helper functions this plugin provides,
+	# # see the ITemplateHelpers plugin interface.
+	# def get_helpers(self):
+	# 	return {'helper': helper}
 	
