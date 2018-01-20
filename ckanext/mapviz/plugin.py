@@ -16,10 +16,10 @@ class MapvizPlugin(plugins.SingletonPlugin):
 
 	# IResourceView
 	def info(self):
-	        return {'name': 'mapviz-view',# Name of plugin
-	                'title': 'Geovisualization',# Title to be displayed in interface
-	                'icon': 'globe',# Icon used.
-	                'iframed': False}
+			return {'name': 'mapviz-view',# Name of plugin
+					'title': 'Geovisualization',# Title to be displayed in interface
+					'icon': 'globe',# Icon used.
+					'iframed': False}
 
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
@@ -31,7 +31,7 @@ class MapvizPlugin(plugins.SingletonPlugin):
 	# ITemplateHelpers
 
 	# Tell CKAN what custom template helper functions this plugin provides,
-    # see the ITemplateHelpers plugin interface.
-    def get_helpers(self):
-        return {'helper': helper}
+	# see the ITemplateHelpers plugin interface.
+	def get_helpers(self):
+		return {'helper': helper}
 	
