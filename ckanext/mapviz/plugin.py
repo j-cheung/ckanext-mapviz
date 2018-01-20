@@ -4,8 +4,8 @@ import ckan.plugins.toolkit as toolkit
 
 class MapvizPlugin(plugins.SingletonPlugin):
 	plugins.implements(plugins.IConfigurer)
-	plugins.implements(p.IResourceView, inherit=True)
-	plugins.implements(p.ITemplateHelpers, inherit=True)
+	plugins.implements(IResourceView, inherit=True)
+	plugins.implements(ITemplateHelpers, inherit=True)
 
 	# IConfigurer
 
