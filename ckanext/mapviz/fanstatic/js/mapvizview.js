@@ -2,7 +2,7 @@
 *
 *
 */
-
+"use strict";
 
 ckan.module('mapvizview',function(jQuery) {
 
