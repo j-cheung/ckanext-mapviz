@@ -1,11 +1,11 @@
-import ckan.plugins as plugins
+import ckan.plugins as p
 import ckan.plugins.toolkit as toolkit
 
 
-class MapvizPlugin(plugins.SingletonPlugin):
-	plugins.implements(plugins.IConfigurer)
-	plugins.implements(plugins.IResourceView, inherit=True)
-	# plugins.implements(plugins.ITemplateHelpers, inherit=True)
+class MapvizPlugin(p.SingletonPlugin):
+	p.implements(p.IConfigurer)
+	p.implements(p.IResourceView, inherit=True)
+	# p.implements(p.ITemplateHelpers, inherit=True)
 
 	# IConfigurer
 
