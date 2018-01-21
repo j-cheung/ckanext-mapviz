@@ -4,7 +4,7 @@
 */
 
 
-ckan.module('mapvizview',function(jQuery,_) {
+ckan.module('mapvizview',function(jQuery) {
 
 	return{
 		initialize: function(){
