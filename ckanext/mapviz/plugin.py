@@ -17,9 +17,9 @@ class MapvizPlugin(plugins.SingletonPlugin):
 	# IResourceView
 	def info(self):
 			return {'name': 'mapviz',# Name of plugin
-					'title': 'Map',# Title to be displayed in interface
+					'title': p.toolkit._('Mapviz'),# Title to be displayed in interface
 					'icon': 'globe',# Icon used.
-					'iframed': False}
+					'iframed': True}
 
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
