@@ -16,7 +16,7 @@ class MapvizPlugin(plugins.SingletonPlugin):
 
 	# IResourceView
 	def info(self):
-			return {'name': 'mapviz-view',# Name of plugin
+			return {'name': 'mapviz',# Name of plugin
 					'title': 'Map',# Title to be displayed in interface
 					'icon': 'globe',# Icon used.
 					'iframed': False}
