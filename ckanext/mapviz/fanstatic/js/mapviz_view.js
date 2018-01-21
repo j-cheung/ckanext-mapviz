@@ -12,8 +12,6 @@ ckan.module('mapvizview',function(jQuery,_) {
 		},
 		initialize: function(){
       		console.log('Ive been called for element: %o', this.el);
-			this.el.empty();
-			this.el.append($("<div></div>").attr("id","map"))
 		}
 
 	}
