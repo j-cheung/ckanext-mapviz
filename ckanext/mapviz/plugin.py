@@ -28,6 +28,15 @@ class MapvizPlugin(p.SingletonPlugin):
 	def view_template(self, context, data_dict):
 		return 'base.html'
 
+	def setup_template_variables(self, context, data_dict):
+        import ckanext.resourceproxy.plugin as proxy
+        self.same_domain = data_dict['resource'].get('on_same_domain')
+        if self.proxy_enabled and not self.same_domain:
+            data_dict['resource']['original_url'] = \
+                data_dict['resource'].get('url')
+            data_dict['resource']['url'] = \
+                proxy.get_proxified_resource_url(data_dict)		 
+
 	# # ITemplateHelpers
 
 	# # Tell CKAN what custom template helper functions this plugin provides,
