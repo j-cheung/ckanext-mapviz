@@ -41,7 +41,7 @@ class MapvizPlugin(p.SingletonPlugin):
 			data_dict['resource']['url'] = \
 				proxy.get_proxified_resource_url(data_dict)
 			proxy_resource_url = proxy.get_proxified_resource_url(data_dict)
-		return {'proxy_resource_url':proxy_resource_url}
+		return {'proxy_resource_url':data_dict['resource']['url']}
 
 	# # ITemplateHelpers
 
