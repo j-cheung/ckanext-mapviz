@@ -15,12 +15,14 @@ ckan.module('mapvizview',function(jQuery) {
 		    console.log(this.options);
 		    console.log(this.options.proxy_service_url);
 
-			var file = jQuery.get({
-				url: this.options.proxy_service_url,
-				dataType: "json"
-			});
-
-			console.log(file)
+			var counties = $.ajax({
+	          url:this.options.proxy_service_url,
+	          dataType: "json",
+	          success: console.log("data successfully loaded."),
+	          error: function (xhr) {
+	            alert(xhr.statusText)
+	          }
+	        })
 
       		jQuery.get(this.options.proxy_service_url).done(
 		        function(data){
