@@ -38,8 +38,8 @@ class MapvizPlugin(p.SingletonPlugin):
 		if self.proxy_enabled and not self.same_domain:
 			data_dict['resource']['original_url'] = \
 				data_dict['resource'].get('url')
-			data_dict['resource']['url'] = \
-				proxy.get_proxified_resource_url(data_dict)
+			# data_dict['resource']['url'] = \
+			# 	proxy.get_proxified_resource_url(data_dict)
 			proxy_resource_url = proxy.get_proxified_resource_url(data_dict)
 		return {'proxy_resource_url':data_dict['resource']['url']}
 
