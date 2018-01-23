@@ -11,7 +11,7 @@ ckan.module('mapvizview',function(jQuery) {
       		this.el.append($("<div></div>").attr("id","map"));
       		$("#map").append($("<div>HELLOOOOOOO</div>"));
 
-      		console.logt(this);
+      		console.log(this);
 		    console.log(this.options);
 		    console.log(this.options.proxy_service_url);
       		jQuery.get(this.options.proxy_service_url).done(
