@@ -14,6 +14,7 @@ ckan.module('mapvizview',function(jQuery) {
 
       		jQuery.get(this.options.proxy_service_url).done(
 		        function(data){
+		        	console.log(this.options.proxy_service_url)
 					console.log(data);
 		        })
 		    .fail(
