@@ -14,7 +14,8 @@ ckan.module('mapvizview',function(jQuery) {
       		console.log(this);
 		    console.log(this.options);
 		    console.log(this.options.proxy_service_url);
-      		jQuery.get(this.options.proxy_service_url).done(
+
+			jQuery.getJSON(this.options.proxy_service_url).done(
 		        function(data){
 					console.log(data);
 		        })
@@ -23,6 +24,16 @@ ckan.module('mapvizview',function(jQuery) {
 					console.log("fail");
 		        }
 		    );
+
+     //  		jQuery.get(this.options.proxy_service_url).done(
+		   //      function(data){
+					// console.log(data);
+		   //      })
+		   //  .fail(
+		   //      function(jqXHR, textStatus, errorThrown) {
+					// console.log("fail");
+		   //      }
+		   //  );
 		}
 	};
 });
