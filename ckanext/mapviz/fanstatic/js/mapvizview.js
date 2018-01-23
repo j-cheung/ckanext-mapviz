@@ -18,7 +18,9 @@ ckan.module('mapvizview',function(jQuery) {
 			var file = jQuery.get({
 				url: this.options.proxy_service_url,
 				dataType: "json"
-			})
+			});
+
+			console.log(file)
 
       		jQuery.get(this.options.proxy_service_url).done(
 		        function(data){
