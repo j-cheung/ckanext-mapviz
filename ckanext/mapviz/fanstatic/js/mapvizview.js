@@ -24,6 +24,8 @@ ckan.module('mapvizview',function(jQuery) {
 	          }
 	        })
 
+	        console.log(counties)
+
       		jQuery.get(this.options.proxy_service_url).done(
 		        function(data){
 					console.log(data);
