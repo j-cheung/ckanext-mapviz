@@ -13,6 +13,8 @@ class MapvizPlugin(p.SingletonPlugin):
 		toolkit.add_template_directory(config_, 'templates')
 		toolkit.add_public_directory(config_, 'public')
 		toolkit.add_resource('fanstatic', 'mapviz')
+		
+        self.proxy_enabled = 'resource_proxy' in config.get('ckan.plugins', '')
 
 	# IResourceView
 	def info(self):
