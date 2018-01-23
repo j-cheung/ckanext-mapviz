@@ -33,7 +33,6 @@ class MapvizPlugin(p.SingletonPlugin):
 		return 'base.html'
 
 	def setup_template_variables(self, context, data_dict):
-		print(data_dict['resource']['url'])
 		import ckanext.resourceproxy.plugin as proxy
 		self.same_domain = data_dict['resource'].get('on_same_domain')
 		if self.proxy_enabled and not self.same_domain:
