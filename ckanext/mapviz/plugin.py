@@ -1,6 +1,8 @@
 import ckan.plugins as p
 import ckan.plugins.toolkit as toolkit
 
+from ckan.common import config
+
 
 class MapvizPlugin(p.SingletonPlugin):
 	p.implements(p.IConfigurer)
@@ -14,7 +16,7 @@ class MapvizPlugin(p.SingletonPlugin):
 		toolkit.add_public_directory(config_, 'public')
 		toolkit.add_resource('fanstatic', 'mapviz')
 		
-        self.proxy_enabled = 'resource_proxy' in config.get('ckan.plugins', '')
+		self.proxy_enabled = 'resource_proxy' in config.get('ckan.plugins', '')
 
 	# IResourceView
 	def info(self):
