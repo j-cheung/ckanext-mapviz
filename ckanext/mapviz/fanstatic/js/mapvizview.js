@@ -30,12 +30,15 @@ ckan.module('mapvizview',function(jQuery) {
 
 	        console.log(counties)
 
-      		jQuery.getJSON(this.options.proxy_service_url).done(
+      		jQuery.getJSON(this.options.proxy_service_url)
+      		.done(
 		        function(data){
+		        	console.log("success")
 					console.log(data);
 		        })
 		    .fail(
 		        function(jqXHR, textStatus, errorThrown) {
+		        	console.log("fail")
 	           	 	console.log(jqXHR.statusText)
 		        }
 		    );
