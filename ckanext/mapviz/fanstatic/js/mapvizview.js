@@ -34,7 +34,7 @@ ckan.module('mapvizview',function(jQuery) {
 		        })
 		    .fail(
 		        function(jqXHR, textStatus, errorThrown) {
-          			self.showError(jqXHR, textStatus, errorThrown);
+          			this.showError(jqXHR, textStatus, errorThrown);
 		        }
 		    );
 		},
