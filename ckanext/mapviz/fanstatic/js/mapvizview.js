@@ -18,7 +18,9 @@ ckan.module('mapvizview',function(jQuery) {
 			var counties = $.ajax({
 	          url:this.options.proxy_service_url,
 	          dataType: "json",
-	          success: console.log(data),
+	          success: function(data), {
+	          	console.log(data)
+	          },
 	          error: function (xhr) {
 	            alert(xhr.statusText)
 	          }
