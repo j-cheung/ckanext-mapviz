@@ -39,7 +39,7 @@ ckan.module('mapvizview',function(jQuery) {
 		    .fail(
 		        function(jqXHR, textStatus, errorThrown) {
 		        	console.log("fail")
-	           	 	console.log(jqXHR.statusText)
+	           	 	console.log(errorThrown)
 		        }
 		    );
 		},
