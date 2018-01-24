@@ -34,9 +34,17 @@ ckan.module('mapvizview',function(jQuery) {
 		        })
 		    .fail(
 		        function(jqXHR, textStatus, errorThrown) {
-					console.log("fail");
+          			self.showError(jqXHR, textStatus, errorThrown);
 		        }
 		    );
-		}
+		},
+
+		showError: function (jqXHR, textStatus, errorThrown) {
+	      if (textStatus == 'error' && jqXHR.responseText.length) {
+	        this.el.html(jqXHR.responseText);
+	      } else {
+	        this.el.html(this.i18n('error', {text: textStatus, error: errorThrown}));
+	      }
+	    },
 	};
 });
