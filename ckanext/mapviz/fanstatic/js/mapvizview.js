@@ -8,6 +8,8 @@ ckan.module('mapvizview',function(jQuery) {
 
 	return{
 		initialize: function(){
+			var self = this;
+
       		this.el.append($("<div></div>").attr("id","map"));
       		$("#map").append($("<div>HELLOOOOOOO</div>"));
 
@@ -34,7 +36,7 @@ ckan.module('mapvizview',function(jQuery) {
 		        })
 		    .fail(
 		        function(jqXHR, textStatus, errorThrown) {
-          			this.showError(jqXHR, textStatus, errorThrown);
+          			self.showError(jqXHR, textStatus, errorThrown);
 		        }
 		    );
 		},
