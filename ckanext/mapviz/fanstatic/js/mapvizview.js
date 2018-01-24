@@ -15,10 +15,10 @@ ckan.module('mapvizview',function(jQuery) {
 
       		console.log(this);
 		    console.log(this.options);
-		    console.log(this.options.proxy_service_url);
+		    console.log(this.options.proxy_resource_url);
 
 			var counties = $.ajax({
-	          url:this.options.proxy_service_url,
+	          url:this.options.proxy_resource_url,
 	          dataType: "json",
 	          success: function(data) {
 	          	console.log(data)
@@ -30,7 +30,7 @@ ckan.module('mapvizview',function(jQuery) {
 
 	        console.log(counties)
 
-      		jQuery.getJSON(this.options.proxy_service_url)
+      		jQuery.getJSON(this.options.proxy_resource_url)
       		.done(
 		        function(data){
 		        	console.log("success")
