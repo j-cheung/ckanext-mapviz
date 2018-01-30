@@ -1,14 +1,13 @@
 {% ckan_extends %}
 
 {% block page %}
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
-<div 	data-module="mapvizview"
-		data-module-proxy_resource_url="{{ proxy_resource_url }}"
-	>
-</div>
-<div>HI</div>
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+	<div 	data-module="mapvizview"
+			data-module-proxy_resource_url="{{ proxy_resource_url }}"
+		>
+	</div>
+	<div>HI</div>
 
-{% resource 'mapviz/mapviz_view' %}
+	{% resource 'mapviz/mapviz_view' %}
 
 {% endblock %}
