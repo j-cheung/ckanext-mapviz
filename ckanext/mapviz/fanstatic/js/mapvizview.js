@@ -13,23 +13,6 @@ ckan.module('mapvizview',function(jQuery) {
       		this.el.append($("<div></div>").attr("id","map"));
       		$("#map").append($("<div>HELLOOOOOOO</div>"));
 
-      		console.log(this);
-		    console.log(this.options);
-		    console.log(this.options.proxy_resource_url);
-
-			var counties = $.ajax({
-	          url:this.options.proxy_resource_url,
-	          dataType: "json",
-	          success: function(data) {
-	          	console.log(data)
-	          },
-	          error: function (xhr) {
-	            alert(xhr.statusText)
-	          }
-	        })
-
-	        console.log(counties)
-
       		jQuery.getJSON(this.options.proxy_resource_url)
       		.done(
 		        function(data){
