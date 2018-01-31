@@ -12,7 +12,7 @@ ckan.module('mapvizview',function(jQuery) {
 
       		this.el.append($("<div></div>").attr({
       			"id":"map",
-      			"style":"width:100%;"
+      			"style":"width:100%; height:100%"
       		}));
       		// $("#map").append($("<div>HELLOOOOOOO</div>"));
 
