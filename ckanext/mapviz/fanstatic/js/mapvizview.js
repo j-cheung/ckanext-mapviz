@@ -10,7 +10,10 @@ ckan.module('mapvizview',function(jQuery) {
 		initialize: function(){
 			var self = this;
 
-      		this.el.append($("<div></div>").attr("id","map"));
+      		this.el.append($("<div></div>").attr({
+      			"id":"map",
+      			"style":"width:400px; height:300px;"
+      		}));
       		// $("#map").append($("<div>HELLOOOOOOO</div>"));
 
       		mapboxgl.accessToken = 'pk.eyJ1IjoiamNoZXVuZyIsImEiOiJjajh0M2FwMncwZ290MnFxdTY3enB6cXlnIn0.e26zB-gpmMOt6SjHbJ68vg';
