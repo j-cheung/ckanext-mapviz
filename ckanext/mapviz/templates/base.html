@@ -1,5 +1,10 @@
 {% ckan_extends %}
 
+{% block styles %}
+  {{ super() }}
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+
 {% block page %}
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
 	<div 	data-module="mapvizview"
