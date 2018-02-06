@@ -40,20 +40,28 @@ ckan.module('mapvizview',function(jQuery) {
 
 		plotGeoJSON: function(map,jsonData) {
 			map.on('load', function() {
-				map.addSource("resource-data",{
-					"type": "geojson",
-					"data": jsonData
-				});
+				// map.addSource("resource-data",{
+				// 	"type": "geojson",
+				// 	"data": jsonData
+				// });
+
+				// map.addLayer({
+				// 	"id": "park-boundary",
+				// 	"type": "fill",
+				// 	"source": "resource-data",
+				// 	"paint": {
+				// 		"fill-color": "#888888",
+				// 		"fill-opacity": 0.4
+				// 	},
+				// 	"filter": ["==", "$type", "MultiLineString"]
+				// });
 
 				map.addLayer({
-					"id": "park-boundary",
-					"type": "fill",
-					"source": "resource-data",
-					"paint": {
-						"fill-color": "#888888",
-						"fill-opacity": 0.4
-					},
-					"filter": ["==", "$type", "MultiLineString"]
+					"id": "map-view",
+					"source": {
+						"type" : "geojson",
+						"data" : jsonData
+					}
 				});
 
 			})
