@@ -22,12 +22,13 @@ ckan.module('mapvizview',function(jQuery) {
 			    style: 'mapbox://styles/mapbox/streets-v9'
 			});
 
-
       		jQuery.getJSON(this.options.proxy_resource_url)
       		.done(
 		        function(data){
 		        	console.log("success")
 					console.log(data);
+					//plot on map
+					plotGeoJSON(map,data)
 		        })
 		    .fail(
 		        function(jqXHR, textStatus, errorThrown) {
@@ -35,6 +36,17 @@ ckan.module('mapvizview',function(jQuery) {
 	           	 	console.log(errorThrown)
 		        }
 		    );
+		},
+
+		plotGeoJSON: function(map,jsonData) {
+			map.on('load', function() {
+				map.addSource({
+					type: 'geojson',
+					data: jsonData
+				});
+
+				
+			})
 		},
 
 		showError: function (jqXHR, textStatus, errorThrown) {
