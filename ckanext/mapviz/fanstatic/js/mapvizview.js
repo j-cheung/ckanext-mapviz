@@ -41,8 +41,8 @@ ckan.module('mapvizview',function(jQuery) {
 		plotGeoJSON: function(map,jsonData) {
 			map.on('load', function() {
 				map.addSource({
-					type: 'geojson',
-					data: jsonData
+					"type": "geojson",
+					"data": jsonData
 				});
 
 
