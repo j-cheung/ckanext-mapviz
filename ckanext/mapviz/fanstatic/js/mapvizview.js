@@ -77,8 +77,7 @@ ckan.module('mapvizview',function(jQuery) {
 
 				var bounds = coordinates.reduce(function(bounds, coord){
 					return bounds.extend(coord);
-				}, new mapboxgl.LngLatBounds(coordinates[0],coordinates[0])
-				});
+				}, new mapboxgl.LngLatBounds(coordinates[0],coordinates[0]));
 
 				map.fitBounds(bounds,{
 					padding: 20
