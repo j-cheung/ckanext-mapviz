@@ -19,7 +19,7 @@ ckan.module('mapvizview',function(jQuery) {
 			mapboxgl.accessToken = 'pk.eyJ1IjoiamNoZXVuZyIsImEiOiJjajh0M2FwMncwZ290MnFxdTY3enB6cXlnIn0.e26zB-gpmMOt6SjHbJ68vg';
 			var map = new mapboxgl.Map({
 				container: 'map',
-				style: 'mapbox://styles/mapbox/streets-v9'
+				style: 'mapbox://styles/mapbox/dark-v9'
 			});
 
 			jQuery.getJSON(this.options.proxy_resource_url)
@@ -61,6 +61,14 @@ ckan.module('mapvizview',function(jQuery) {
 					"source": {
 						"type" : "geojson",
 						"data" : jsonData
+					},
+					"layout": {
+						"line-join": "round",
+						"line-cap": "round"
+					},
+					"paint": {
+						"line-color": "#888",
+						"line-width": 8
 					}
 				});
 
