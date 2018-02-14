@@ -67,7 +67,7 @@ ckan.module('mapvizview',function(jQuery) {
 						"line-cap": "round"
 					},
 					"paint": {
-						"line-color": "#888",
+						"line-color": "#35DC9A",
 						"line-width": 8
 					}
 				});
