@@ -58,6 +58,7 @@ ckan.module('mapvizview',function(jQuery) {
 
 				map.addLayer({
 					"id": "map-view",
+					"type": "line",
 					"source": {
 						"type" : "geojson",
 						"data" : jsonData
