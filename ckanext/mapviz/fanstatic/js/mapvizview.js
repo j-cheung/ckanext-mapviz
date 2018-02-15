@@ -10,6 +10,8 @@ ckan.module('mapvizview',function(jQuery) {
 		initialize: function(){
 			var self = this;
 
+			this.el.empty();
+
 			this.el.append($("<div></div>").attr({
 				"id":"map",
 				"style":"width:100%; min-height:650px"
@@ -74,7 +76,7 @@ ckan.module('mapvizview',function(jQuery) {
 				});
 
 				var bounds = turf.bbox(jsonData)
-				
+
 				map.fitBounds(bounds,{
 					padding: 20
 				});
