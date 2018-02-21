@@ -26,7 +26,7 @@ ckan.module('mapvizview',function(jQuery) {
 					console.log("success")
 					console.log(data);
 					//plot on map
-					self.plotGeoJSON(map,data)
+					this.plotGeoJSON(map,data)
 				})
 			.fail(
 				function(jqXHR, textStatus, errorThrown) {
