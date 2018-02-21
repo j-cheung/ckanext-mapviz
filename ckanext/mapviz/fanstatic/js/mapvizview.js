@@ -58,7 +58,10 @@ ckan.module('mapvizview',function(jQuery) {
 				map.addLayer({
 					"id": "park-boundary",
 					"type": "fill",
-					"source": "national-park",
+					"source": {
+						"type" : "geojson",
+						"data" : jsonData
+					},
 					"paint": {
 						"fill-color": "#888888",
 						"fill-opacity": 0.4
