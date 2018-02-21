@@ -8,6 +8,7 @@ ckan.module('mapvizview',function(jQuery) {
 
 	return{
 		initialize: function(){
+			var self = this;
 			this.el.empty();
 			this.el.append($("<div></div>").attr({
 				"id":"map",
@@ -26,7 +27,7 @@ ckan.module('mapvizview',function(jQuery) {
 					console.log("success")
 					console.log(data);
 					//plot on map
-					this.plotGeoJSON(map,data)
+					self.plotGeoJSON(map,data)
 				})
 			.fail(
 				function(jqXHR, textStatus, errorThrown) {
