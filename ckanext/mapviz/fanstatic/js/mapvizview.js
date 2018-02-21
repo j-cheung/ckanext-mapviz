@@ -8,15 +8,11 @@ ckan.module('mapvizview',function(jQuery) {
 
 	return{
 		initialize: function(){
-			var self = this;
-
 			this.el.empty();
-
 			this.el.append($("<div></div>").attr({
 				"id":"map",
 				"style":"width:100%; min-height:650px"
 			}));
-			// $("#map").append($("<div>HELLOOOOOOO</div>"));
 
 			mapboxgl.accessToken = 'pk.eyJ1IjoiamNoZXVuZyIsImEiOiJjajh0M2FwMncwZ290MnFxdTY3enB6cXlnIn0.e26zB-gpmMOt6SjHbJ68vg';
 			var map = new mapboxgl.Map({
@@ -58,6 +54,17 @@ ckan.module('mapvizview',function(jQuery) {
 				// 	"filter": ["==", "$type", "MultiLineString"]
 				// });
 
+				map.addLayer({
+					"id": "park-boundary",
+					"type": "fill",
+					"source": "national-park",
+					"paint": {
+						"fill-color": "#888888",
+						"fill-opacity": 0.4
+					},
+					"filter": ["==", "$type", "Polygon"]
+				});
+				
 				map.addLayer({
 					"id": "map-view",
 					"type": "line",
