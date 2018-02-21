@@ -66,7 +66,7 @@ ckan.module('mapvizview',function(jQuery) {
 						"fill-color": "#888888",
 						"fill-opacity": 0.4
 					},
-					"filter": ["==", "$type", "Polygon"]
+					"filter": ["==", "$type", "MultiPolygon"]
 				});
 				
 				map.addLayer({
