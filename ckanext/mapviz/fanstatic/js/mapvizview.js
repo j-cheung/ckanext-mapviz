@@ -39,10 +39,10 @@ ckan.module('mapvizview',function(jQuery) {
 
 		plotGeoJSON: function(map,jsonData) {
 			map.on('load', function() {
-				// map.addSource("resource-data",{
-				// 	"type": "geojson",
-				// 	"data": jsonData
-				// });
+				map.addSource("resource-data",{
+					"type": "geojson",
+					"data": jsonData
+				});
 
 				// map.addLayer({
 				// 	"id": "park-boundary",
@@ -65,11 +65,12 @@ ckan.module('mapvizview',function(jQuery) {
 					"paint": {
 						"fill-color": "#888888",
 						"fill-opacity": 0.4
-					}
+					},
+					"filter": ["==", "$type", "MultiPolygon"]
 				});
 				
-				map.addLayer({
-					"id": "map-view",
+				map.addLayer({	
+					"id": "park-line",
 					"type": "line",
 					"source": {
 						"type" : "geojson",
@@ -82,8 +83,26 @@ ckan.module('mapvizview',function(jQuery) {
 					"paint": {
 						"line-color": "#35DC9A",
 						"line-width": 3
-					}
+					},
+					"filter": ["==", "$type", "MultiLineString"]
 				});
+
+				// map.addLayer({
+				// 	"id": "map-view",
+				// 	"type": "line",
+				// 	"source": {
+				// 		"type" : "geojson",
+				// 		"data" : jsonData
+				// 	},
+				// 	"layout": {
+				// 		"line-join": "round",
+				// 		"line-cap": "round"
+				// 	},
+				// 	"paint": {
+				// 		"line-color": "#35DC9A",
+				// 		"line-width": 3
+				// 	}
+				// });
 
 				var bounds = turf.bbox(jsonData)
 
