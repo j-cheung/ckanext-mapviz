@@ -66,7 +66,7 @@ ckan.module('mapvizview',function(jQuery) {
 						"fill-color": "#888888",
 						"fill-opacity": 0.4
 					},
-					"filter": ["==", "$type", "MultiPolygon"]
+					"filter": ["==", "$type", "Polygon"]
 				});
 				
 				map.addLayer({	
@@ -84,7 +84,7 @@ ckan.module('mapvizview',function(jQuery) {
 						"line-color": "#35DC9A",
 						"line-width": 3
 					},
-					"filter": ["==", "$type", "MultiLineString"]
+					"filter": ["==", "$type", "LineString"]
 				});
 
 				// map.addLayer({
