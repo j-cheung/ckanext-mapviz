@@ -56,37 +56,37 @@ ckan.module('mapvizview',function(jQuery) {
 				// 	"filter": ["==", "$type", "MultiLineString"]
 				// });
 
-				map.addLayer({
-					"id": "park-boundary",
-					"type": "fill",
-					"source": {
-						"type" : "geojson",
-						"data" : jsonData
-					},
-					"paint": {
-						"fill-color": "#888888",
-						"fill-opacity": 0.4
-					},
-					"filter": ["==", "$type", "Polygon"]
-				});
+				// map.addLayer({
+				// 	"id": "park-boundary",
+				// 	"type": "fill",
+				// 	"source": {
+				// 		"type" : "geojson",
+				// 		"data" : jsonData
+				// 	},
+				// 	"paint": {
+				// 		"fill-color": "#35DC9A",
+				// 		"fill-opacity": 0.4
+				// 	},
+				// 	"filter": ["==", "$type", "Polygon"]
+				// });
 				
-				map.addLayer({	
-					"id": "park-line",
-					"type": "line",
-					"source": {
-						"type" : "geojson",
-						"data" : jsonData
-					},
-					"layout": {
-						"line-join": "round",
-						"line-cap": "round"
-					},
-					"paint": {
-						"line-color": "#35DC9A",
-						"line-width": 3
-					},
-					"filter": ["==", "$type", "LineString"]
-				});
+				// map.addLayer({	
+				// 	"id": "park-line",
+				// 	"type": "line",
+				// 	"source": {
+				// 		"type" : "geojson",
+				// 		"data" : jsonData
+				// 	},
+				// 	"layout": {
+				// 		"line-join": "round",
+				// 		"line-cap": "round"
+				// 	},
+				// 	"paint": {
+				// 		"line-color": "#35DC9A",
+				// 		"line-width": 3
+				// 	},
+				// 	"filter": ["==", "$type", "LineString"]
+				// });
 
 				// map.addLayer({
 				// 	"id": "map-view",
