@@ -108,6 +108,7 @@ ckan.module('mapvizview',function(jQuery) {
 				var bounds = turf.bbox(jsonData)
 
 				console.log(bounds)
+				console.log("hi")
 
 				map.fitBounds(bounds,{
 					padding: 20
