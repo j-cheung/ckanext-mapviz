@@ -31,7 +31,7 @@ class MapvizPlugin(p.SingletonPlugin):
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
 		format_lower = data_dict['resource'].get('format', '').lower()
-		log.info('Data format {0}'.format(data_dict['resource']))
+		log.info('Data format {0}'.format("hi"))
 		return True
 
 	def view_template(self, context, data_dict):
