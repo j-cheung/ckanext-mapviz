@@ -1,8 +1,11 @@
 import ckan.plugins as p
 import ckan.plugins.toolkit as toolkit
 
+from logging import getLogger
+
 from ckan.common import config
 
+log = getLogger(__name__)
 
 class MapvizPlugin(p.SingletonPlugin):
 	p.implements(p.IConfigurer)
@@ -28,7 +31,7 @@ class MapvizPlugin(p.SingletonPlugin):
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
 		format_lower = data_dict['resource'].get('format', '').lower()
-		print(format_lower)
+		log.debug(format_lower)
 		return True
 
 	def view_template(self, context, data_dict):
