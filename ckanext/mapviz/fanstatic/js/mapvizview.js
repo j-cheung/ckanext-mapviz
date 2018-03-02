@@ -33,7 +33,7 @@ ckan.module('mapvizview',function(jQuery) {
 						console.log(osmdata);
 						var osm_parsed = jQuery.parseXML(osmdata)
 						console.log(osm_parsed)
-						geojsonData = osmtogeojson(osm_parsed)
+						var geojsonData = osmtogeojson(osm_parsed)
 						console.log(geojsonData)
 						self.plotGeoJSON(map,geojsonData)
 					})
