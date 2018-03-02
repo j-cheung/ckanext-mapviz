@@ -31,7 +31,7 @@ class MapvizPlugin(p.SingletonPlugin):
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
 		format_lower = data_dict['resource'].get('format', '').lower()
-		log.info('Data format {id}'.format(format_lower))
+		log.info('Data format {0}'.format(format_lower))
 		return True
 
 	def view_template(self, context, data_dict):
@@ -47,7 +47,7 @@ class MapvizPlugin(p.SingletonPlugin):
 			# 	proxy.get_proxified_resource_url(data_dict)
 			proxy_resource_url = proxy.get_proxified_resource_url(data_dict)
 			print(proxy_resource_url)
-			log.info('Proxy URL {id}'.format(proxy_resource_url))
+			log.info('Proxy URL {0}'.format(proxy_resource_url))
 		return {'proxy_resource_url':proxy_resource_url}
 
 	# # ITemplateHelpers
