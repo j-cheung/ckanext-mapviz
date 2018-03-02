@@ -31,20 +31,11 @@ ckan.module('mapvizview',function(jQuery) {
 					function(osmdata){
 						console.log("success")
 						console.log(osmdata);
-						jQuery.parseXML(osmdata)
-						.done(
-							function(osm_parsed){
-								console.log(osm_parsed)
-								geojsonData = osmtogeojson(osmdata)
-								console.log(geojsonData)
-								self.plotGeoJSON(map,geojsonData)
-							})
-						.fail(
-							function(jqXHR, textStatus, errorThrown) {
-								console.log("fail")
-								console.log(errorThrown)
-							}
-						);
+						var osm_parsed = jQuery.parseXML(osmdata)
+						console.log(osm_parsed)
+						geojsonData = osmtogeojson(osm_parsed)
+						console.log(geojsonData)
+						self.plotGeoJSON(map,geojsonData)
 					})
 				.fail(
 					function(jqXHR, textStatus, errorThrown) {
