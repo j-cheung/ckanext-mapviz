@@ -26,6 +26,21 @@ ckan.module('mapvizview',function(jQuery) {
 			if(resource_format == 'osm'){
 				console.log("osm")
 				//convert osm to geojson
+				jQuery.get(this.options.proxy_resource_url)
+				.done(
+					function(osmdata){
+						console.log("success")
+						console.log(osmdata);
+						geojsonData = osmtogeojson(osmdata)
+						//plot on map
+						self.plotGeoJSON(map,geojsonData)
+					})
+				.fail(
+					function(jqXHR, textStatus, errorThrown) {
+						console.log("fail")
+						console.log(errorThrown)
+					}
+				);
 
 			}
 			//if geojson
