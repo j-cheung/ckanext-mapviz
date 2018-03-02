@@ -32,7 +32,8 @@ class MapvizPlugin(p.SingletonPlugin):
 		'''defines what types of files can use this view'''
 		format_lower = data_dict['resource'].get('format', '').lower()
 		log.info('Data format {0}'.format("hi"))
-		return True
+		correct_format = format_lower in ['geojson','osm']
+		return correct_format
 
 	def view_template(self, context, data_dict):
 		return 'base.html'
