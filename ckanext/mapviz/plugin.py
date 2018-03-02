@@ -21,6 +21,17 @@ class MapvizPlugin(p.SingletonPlugin):
 		
 		self.proxy_enabled = 'resource_proxy' in config.get('ckan.plugins', '')
 
+	def _guess_format_from_extension(self, url):
+		try:
+			parsed_url = urlparse.urlparse(url)
+			format_lower = (os.path.splitext(parsed_url.path)[1][1:]
+							.encode('ascii', 'ignore').lower())
+		except ValueError, e:
+			log.error('Invalid URL: {0}, {1}'.format(url, e))
+			format_lower = ''
+
+		return format_lower		
+
 	# IResourceView
 	def info(self):
 			return {'name': 'mapviz',# Name of plugin
@@ -51,7 +62,9 @@ class MapvizPlugin(p.SingletonPlugin):
 			proxy_resource_url = proxy.get_proxified_resource_url(data_dict)
 			print(proxy_resource_url)
 			log.info('Proxy URL {0}'.format(proxy_resource_url))
-		return {'proxy_resource_url':proxy_resource_url}
+		return {'proxy_resource_url':proxy_resource_url,
+				'resource_format':format_lower}
+
 
 	# # ITemplateHelpers
 

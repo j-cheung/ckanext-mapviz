@@ -21,20 +21,31 @@ ckan.module('mapvizview',function(jQuery) {
 				style: 'mapbox://styles/mapbox/dark-v9'
 			});
 
-			jQuery.getJSON(this.options.proxy_resource_url)
-			.done(
-				function(data){
-					console.log("success")
-					console.log(data);
-					//plot on map
-					self.plotGeoJSON(map,data)
-				})
-			.fail(
-				function(jqXHR, textStatus, errorThrown) {
-					console.log("fail")
-					console.log(errorThrown)
-				}
-			);
+			var resource_format = this.options.resource_format
+			//if osm
+			if(resource_format == 'osm'){
+				console.log("osm")
+				//convert osm to geojson
+
+			}
+			//if geojson
+			else if(resource_format == 'geojson'){
+				console.log("geojson")
+				jQuery.getJSON(this.options.proxy_resource_url)
+				.done(
+					function(data){
+						console.log("success")
+						console.log(data);
+						//plot on map
+						self.plotGeoJSON(map,data)
+					})
+				.fail(
+					function(jqXHR, textStatus, errorThrown) {
+						console.log("fail")
+						console.log(errorThrown)
+					}
+				);
+			}	
 		},
 
 		plotGeoJSON: function(map,jsonData) {
@@ -70,23 +81,23 @@ ckan.module('mapvizview',function(jQuery) {
 				// 	"filter": ["==", "$type", "Polygon"]
 				// });
 				
-				// map.addLayer({	
-				// 	"id": "park-line",
-				// 	"type": "line",
-				// 	"source": {
-				// 		"type" : "geojson",
-				// 		"data" : jsonData
-				// 	},
-				// 	"layout": {
-				// 		"line-join": "round",
-				// 		"line-cap": "round"
-				// 	},
-				// 	"paint": {
-				// 		"line-color": "#35DC9A",
-				// 		"line-width": 3
-				// 	},
-				// 	"filter": ["==", "$type", "LineString"]
-				// });
+				map.addLayer({	
+					"id": "park-line",
+					"type": "line",
+					"source": {
+						"type" : "geojson",
+						"data" : jsonData
+					},
+					"layout": {
+						"line-join": "round",
+						"line-cap": "round"
+					},
+					"paint": {
+						"line-color": "#35DC9A",
+						"line-width": 3
+					},
+					"filter": ["==", "$type", "LineString"]
+				});
 
 				// map.addLayer({
 				// 	"id": "map-view",
@@ -106,10 +117,6 @@ ckan.module('mapvizview',function(jQuery) {
 				// });
 
 				var bounds = turf.bbox(jsonData)
-
-				console.log(bounds)
-				console.log("hi")
-
 				map.fitBounds(bounds,{
 					padding: 20
 				});
