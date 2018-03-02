@@ -21,7 +21,7 @@ ckan.module('mapvizview',function(jQuery) {
 				style: 'mapbox://styles/mapbox/dark-v9'
 			});
 
-			var resource_format = this.options.resource_format
+			var resource_format = this.options
 			console.log(resource_format)
 			//if osm
 			if(resource_format == 'osm'){
