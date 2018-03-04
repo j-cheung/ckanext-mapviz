@@ -49,8 +49,9 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 		},
 
 		plotGeoJSON: function(map, geojsonData) {
-			L.geoJSON(geojsonData).addTo(map);
-			map.fitBounds(geojsonData.getBounds());
+			var gjLayer = L.geoJSON(geojsonData);
+			map.fitBounds(gjLayer.getBounds());
+			map.addLayer(gjLayer);
 
 		},
 
