@@ -57,7 +57,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 		plotOSM: function(map, osmData) {
 			var osmLayer = new L.OSM.DataLayer(xml).addTo(map);
 			map.fitBounds(osmLayer.getBounds());
-		}
+		},
 
 		plotGeoJSON: function(map, geojsonData) {
 			// var gjLayer = L.geoJSON(geojsonData);
