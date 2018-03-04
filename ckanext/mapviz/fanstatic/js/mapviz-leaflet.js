@@ -30,6 +30,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 					"url": this.options.proxy_resource_url,
 					"dataType": "xml",
 					success: function(xml){
+						console.log(xml)
 						self.plotOSM(map,xml)
 					}
 				})
