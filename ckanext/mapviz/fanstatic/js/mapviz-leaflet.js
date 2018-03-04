@@ -26,7 +26,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			//if osm
 			if(resource_format == 'osm'){
 				console.log("osm")
-				$.ajax({
+				jQuery.ajax({
 					"url": this.options.proxy_resource_url,
 					"dataType": "xml",
 					success: function(xml){
