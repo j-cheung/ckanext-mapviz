@@ -119,22 +119,22 @@ ckan.module('mapviz-mapbox',function(jQuery) {
 					"filter": ["==", "$type", "LineString"]
 				});
 
-				// map.addLayer({
-				// 	"id": "map-view",
-				// 	"type": "line",
-				// 	"source": {
-				// 		"type" : "geojson",
-				// 		"data" : jsonData
-				// 	},
-				// 	"layout": {
-				// 		"line-join": "round",
-				// 		"line-cap": "round"
-				// 	},
-				// 	"paint": {
-				// 		"line-color": "#35DC9A",
-				// 		"line-width": 3
-				// 	}
-				// });
+				map.addLayer({
+					"id": "map-view",
+					"type": "line",
+					"source": {
+						"type" : "geojson",
+						"data" : jsonData
+					},
+					"layout": {
+						"line-join": "round",
+						"line-cap": "round"
+					},
+					"paint": {
+						"line-color": "#35DC9A",
+						"line-width": 3
+					}
+				});
 
 				var bounds = turf.bbox(jsonData)
 				map.fitBounds(bounds,{
