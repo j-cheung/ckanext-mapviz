@@ -30,7 +30,9 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 				.done(
 					function(data){
 						console.log(data)
-						self.plotOSM(map,data)
+						var parser = new DOMParser();
+						var doc = parser.parseFromString(data, "application/xml");
+						self.plotOSM(map,doc)
 					})
 				.fail(
 					function(jqXHR, textStatus, errorThrown) {
