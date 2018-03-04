@@ -55,19 +55,26 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 
 			//styling
 			var geojsonMarkerOptions = {
-			    radius: 8,
-			    fillColor: "#ff7800",
-			    color: "#000",
-			    weight: 1,
-			    opacity: 1,
-			    fillOpacity: 0.8
+			    "radius": 8,
+			    "fillColor": "#ff7800",
+			    "color": "#000",
+			    "weight": 1,
+			    "opacity": 1,
+			    "fillOpacity": 0.8
+			};
+
+			var geojsonLinePolyStyle = {		
+			    "color": "#ff7800",
+			    "weight": 5,
+			    "opacity": 0.65
 			};
 
 			//apply styling, add to map
 			var gjLayer = L.geoJSON(geojsonData, {
 			    pointToLayer: function (feature, latlng) {
 			        return L.circleMarker(latlng, geojsonMarkerOptions);
-			    }
+			    },
+			    style : geojsonLinePolyStyle
 			});
 			map.fitBounds(gjLayer.getBounds());
 			map.addLayer(gjLayer);
