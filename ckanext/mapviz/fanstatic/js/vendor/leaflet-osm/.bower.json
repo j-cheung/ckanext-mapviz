@@ -1,0 +1,15 @@
+{
+  "name": "leaflet-osm",
+  "homepage": "https://github.com/openstreetmap/leaflet-osm",
+  "version": "0.1.0",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "5b4baa863d1ba7ecf3d633c24c57822ac7498894"
+  },
+  "_source": "git://github.com/openstreetmap/leaflet-osm.git",
+  "_target": "^0.1.0",
+  "_originalSource": "git://github.com/openstreetmap/leaflet-osm",
+  "_direct": true
+}
