@@ -82,7 +82,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 
 			//styling
 			var geojsonMarkerOptions = {
-			    "radius": 8,
+			    "radius": 5,
 			    "fillColor": "#ff7800",
 			    "color": "#000",
 			    "weight": 1,
