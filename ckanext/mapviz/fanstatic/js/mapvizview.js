@@ -4,7 +4,7 @@
 */
 "use strict";
 
-ckan.module('mapvizview',function(jQuery) {
+ckan.module('mapviz-mapbox',function(jQuery) {
 
 	return{
 		initialize: function(){
