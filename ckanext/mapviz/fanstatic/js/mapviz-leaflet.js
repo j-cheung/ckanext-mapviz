@@ -26,7 +26,13 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			//if osm
 			if(resource_format == 'osm'){
 				console.log("osm")
-
+				$.ajax({
+					"url": this.options.proxy_resource_url,
+					"dataType": "xml",
+					success: function(xml){
+						self.plotOSM(map,xml)
+					}
+				})
 			}
 			//if geojson
 			else if(resource_format == 'geojson'){
@@ -47,6 +53,11 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 				);
 			}	
 		},
+
+		plotOSM: function(map, osmData) {
+			var osmLayer = new L.OSM.DataLayer(xml).addTo(map);
+			map.fitBounds(osmLayer.getBounds());
+		}
 
 		plotGeoJSON: function(map, geojsonData) {
 			// var gjLayer = L.geoJSON(geojsonData);
@@ -75,9 +86,8 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			        return L.circleMarker(latlng, geojsonMarkerOptions);
 			    },
 			    style : geojsonLinePolyStyle
-			});
+			}).addTo(map);
 			map.fitBounds(gjLayer.getBounds());
-			map.addLayer(gjLayer);
 			
 		},
 
