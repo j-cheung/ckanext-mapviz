@@ -64,7 +64,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			};
 
 			//apply styling, add to map
-			var gjLayer = L.geoJSON(someGeojsonFeature, {
+			var gjLayer = L.geoJSON(geojsonData, {
 			    pointToLayer: function (feature, latlng) {
 			        return L.circleMarker(latlng, geojsonMarkerOptions);
 			    }
