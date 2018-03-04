@@ -48,8 +48,6 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			}	
 		},
 
-		},
-
 		plotGeoJSON: function(map, geojsonData) {
 			L.geoJSON(geojsonData).addTo(map);
 			map.fitBounds(geojsonData.getBounds());
