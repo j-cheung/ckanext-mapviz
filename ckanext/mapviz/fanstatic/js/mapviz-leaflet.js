@@ -41,14 +41,6 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 						console.log(errorThrown)
 					}
 				);
-				// jQuery.ajax({
-				// 	"url": this.options.proxy_resource_url,
-				// 	"dataType": "xml",
-				// 	success: function(xml){
-				// 		console.log(xml)
-				// 		self.plotOSM(map,xml)
-				// 	}
-				// })
 			}
 			//if geojson
 			else if(resource_format == 'geojson'){
@@ -71,7 +63,28 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 		},
 
 		plotOSM: function(map, osmData) {
-			var osmLayer = new L.OSM.DataLayer(osmData).addTo(map);
+			var osmNodeStyle = {
+			    "radius": 5,
+			    "fillColor": "#ff7800",
+			    "color": "#ff7800",
+			    "weight": 1,
+			    "opacity": 1,
+			    "fillOpacity": 0.5
+			}
+
+			var osmWayAreaStyle = {		
+			    "color": "#ff7800",
+			    "weight": 5,
+			    "opacity": 0.65
+			}
+
+			var osmLayer = new L.OSM.DataLayer(osmData,{
+		        styles : {
+		        	node: osmNodeStyle,
+			          way: osmWayAreaStyle,
+			          area: osmWayAreaStyle
+		        }
+	        }).addTo(map);
 			map.fitBounds(osmLayer.getBounds());
 		},
 
@@ -84,10 +97,10 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			var geojsonMarkerOptions = {
 			    "radius": 5,
 			    "fillColor": "#ff7800",
-			    "color": "#000",
+			    "color": "#ff7800",
 			    "weight": 1,
 			    "opacity": 1,
-			    "fillOpacity": 0.8
+			    "fillOpacity": 0.5
 			};
 
 			var geojsonLinePolyStyle = {		
