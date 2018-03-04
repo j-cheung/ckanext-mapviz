@@ -49,10 +49,29 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 		},
 
 		plotGeoJSON: function(map, geojsonData) {
-			var gjLayer = L.geoJSON(geojsonData);
+			// var gjLayer = L.geoJSON(geojsonData);
+			// map.fitBounds(gjLayer.getBounds());
+			// map.addLayer(gjLayer);
+
+			//styling
+			var geojsonMarkerOptions = {
+			    radius: 8,
+			    fillColor: "#ff7800",
+			    color: "#000",
+			    weight: 1,
+			    opacity: 1,
+			    fillOpacity: 0.8
+			};
+
+			//apply styling, add to map
+			var gjLayer = L.geoJSON(someGeojsonFeature, {
+			    pointToLayer: function (feature, latlng) {
+			        return L.circleMarker(latlng, geojsonMarkerOptions);
+			    }
+			});
 			map.fitBounds(gjLayer.getBounds());
 			map.addLayer(gjLayer);
-
+			
 		},
 
 		showError: function (jqXHR, textStatus, errorThrown) {
