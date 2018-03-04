@@ -68,7 +68,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 		},
 
 		plotOSM: function(map, osmData) {
-			var osmLayer = new L.OSM.DataLayer(xml).addTo(map);
+			var osmLayer = new L.OSM.DataLayer(osmData).addTo(map);
 			map.fitBounds(osmLayer.getBounds());
 		},
 
