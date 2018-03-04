@@ -31,8 +31,7 @@ ckan.module('mapviz-mapbox',function(jQuery) {
 					function(osmdata){
 						console.log("success")
 						console.log(osmdata);
-						var osm_escaped = self.escapeXML(osmdata)
-						var osm_parsed = jQuery.parseXML(osm_escaped)
+						var osm_parsed = jQuery.parseXML(osmdata)
 						console.log(osm_parsed)
 						var geojsonData = osmtogeojson(osm_parsed)
 						console.log(geojsonData)
@@ -148,18 +147,6 @@ ckan.module('mapviz-mapbox',function(jQuery) {
 		  } else {
 			this.el.html(this.i18n('error', {text: textStatus, error: errorThrown}));
 		  }
-		},
-
-		escapeXML: function (string) {
-
-		    var str = string;
-		    str = str.replace(/\&/g,"&amp;");
-		    str = str.replace(/\>/g,"&gt;");
-		    str = str.replace(/\</g,"&lt;");
-		    str = str.replace(/\"/g,"&quot;");
-		    str = str.replace(/\'/g,"&apos;");
-
-		    return str;
 		}
 	};
 });

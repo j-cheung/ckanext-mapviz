@@ -21,10 +21,39 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			    id: 'mapbox.dark',
 			    accessToken: 'pk.eyJ1IjoiamNoZXVuZyIsImEiOiJjajh0M2FwMncwZ290MnFxdTY3enB6cXlnIn0.e26zB-gpmMOt6SjHbJ68vg'
 			}).addTo(map);
+
+			var resource_format = this.options.resource_format
+			//if osm
+			if(resource_format == 'osm'){
+				console.log("osm")
+
+			}
+			//if geojson
+			else if(resource_format == 'geojson'){
+				console.log("geojson")
+				jQuery.getJSON(this.options.proxy_resource_url)
+				.done(
+					function(data){
+						console.log("success")
+						console.log(data);
+						//plot on map
+						self.plotGeoJSON(map,data)
+					})
+				.fail(
+					function(jqXHR, textStatus, errorThrown) {
+						console.log("fail")
+						console.log(errorThrown)
+					}
+				);
+			}	
 		},
 
-		plotGeoJSON: function(map,jsonData) {
-			
+		},
+
+		plotGeoJSON: function(map, geojsonData) {
+			L.geoJSON(geojsonData).addTo(map);
+			map.fitBounds(geojsonData.getBounds());
+
 		},
 
 		showError: function (jqXHR, textStatus, errorThrown) {
