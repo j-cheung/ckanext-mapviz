@@ -26,14 +26,25 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			//if osm
 			if(resource_format == 'osm'){
 				console.log("osm")
-				jQuery.ajax({
-					"url": this.options.proxy_resource_url,
-					"dataType": "xml",
-					success: function(xml){
-						console.log(xml)
-						self.plotOSM(map,xml)
+				jQuery.get(this.options.proxy_resource_url)
+				.done(
+					function(data){
+						console.log(data)
+					})
+				.fail(
+					function(jqXHR, textStatus, errorThrown) {
+						console.log("fail")
+						console.log(errorThrown)
 					}
-				})
+				);
+				// jQuery.ajax({
+				// 	"url": this.options.proxy_resource_url,
+				// 	"dataType": "xml",
+				// 	success: function(xml){
+				// 		console.log(xml)
+				// 		self.plotOSM(map,xml)
+				// 	}
+				// })
 			}
 			//if geojson
 			else if(resource_format == 'geojson'){
