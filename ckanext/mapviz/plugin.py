@@ -71,18 +71,18 @@ class MapvizPlugin(p.SingletonPlugin, toolkit.DefaultDatasetForm):
 	def _modify_package_schema(self, schema):
 		# Add our custom country_code metadata field to the schema.
 		schema.update({
-				'country_code': [tk.get_validator('ignore_missing'),
-					tk.get_converter('convert_to_tags')('country_codes')]
+				'country_code': [toolkit.get_validator('ignore_missing'),
+					toolkit.get_converter('convert_to_tags')('country_codes')]
 				})
 		# Add our custom_test metadata field to the schema, this one will use
 		# convert_to_extras instead of convert_to_tags.
 		schema.update({
-				'custom_text': [tk.get_validator('ignore_missing'),
-					tk.get_converter('convert_to_extras')]
+				'custom_text': [toolkit.get_validator('ignore_missing'),
+					toolkit.get_converter('convert_to_extras')]
 				})
 		# Add our custom_resource_text metadata field to the schema
 		schema['resources'].update({
-				'custom_resource_text' : [ tk.get_validator('ignore_missing') ]
+				'custom_resource_text' : [ toolkit.get_validator('ignore_missing') ]
 				})
 		return schema
 
@@ -101,23 +101,23 @@ class MapvizPlugin(p.SingletonPlugin, toolkit.DefaultDatasetForm):
 
 		# Don't show vocab tags mixed in with normal 'free' tags
 		# (e.g. on dataset pages, or on the search page)
-		schema['tags']['__extras'].append(tk.get_converter('free_tags_only'))
+		schema['tags']['__extras'].append(toolkit.get_converter('free_tags_only'))
 
 		# Add our custom country_code metadata field to the schema.
 		schema.update({
 			'country_code': [
-				tk.get_converter('convert_from_tags')('country_codes'),
-				tk.get_validator('ignore_missing')]
+				toolkit.get_converter('convert_from_tags')('country_codes'),
+				toolkit.get_validator('ignore_missing')]
 			})
 
 		# Add our custom_text field to the dataset schema.
 		schema.update({
-			'custom_text': [tk.get_converter('convert_from_extras'),
-				tk.get_validator('ignore_missing')]
+			'custom_text': [toolkit.get_converter('convert_from_extras'),
+				toolkit.get_validator('ignore_missing')]
 			})
 
 		schema['resources'].update({
-				'custom_resource_text' : [ tk.get_validator('ignore_missing') ]
+				'custom_resource_text' : [ toolkit.get_validator('ignore_missing') ]
 			})
 		return schema
 
