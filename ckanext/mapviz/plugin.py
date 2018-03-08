@@ -87,17 +87,17 @@ class MapvizPlugin(p.SingletonPlugin, toolkit.DefaultDatasetForm):
 		return schema
 
 	def create_package_schema(self):
-		schema = super(ExampleIDatasetFormPlugin, self).create_package_schema()
+		schema = super(MapvizPlugin, self).create_package_schema()
 		schema = self._modify_package_schema(schema)
 		return schema
 
 	def update_package_schema(self):
-		schema = super(ExampleIDatasetFormPlugin, self).update_package_schema()
+		schema = super(MapvizPlugin, self).update_package_schema()
 		schema = self._modify_package_schema(schema)
 		return schema
 
 	def show_package_schema(self):
-		schema = super(ExampleIDatasetFormPlugin, self).show_package_schema()
+		schema = super(MapvizPlugin, self).show_package_schema()
 
 		# Don't show vocab tags mixed in with normal 'free' tags
 		# (e.g. on dataset pages, or on the search page)
