@@ -62,6 +62,7 @@ class MapvizPlugin(p.SingletonPlugin):
 			proxy_resource_url = proxy.get_proxified_resource_url(data_dict)
 			print(proxy_resource_url)
 			log.info('Proxy URL {0}'.format(proxy_resource_url))
+		log.info(data_dict['resource'].get('hbase_url'))
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower}
 
