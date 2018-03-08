@@ -65,9 +65,9 @@ class MapvizPlugin(p.SingletonPlugin):
 		hdfs_url = ''
 		if data_dict['resource'].get('hdfs_path'):
 			hdfs_path = data_dict['resource'].get('hdfs_path')
-			import urllib.parse
+			import urlparse
 			hdfs_base_url = "http://138.68.183.248:50075/webhdfs/v1/"
-			hdfs_url = urllib.parse.join(hdfs_base_url,hdfs_path)
+			hdfs_url = urlparse.urljoin(hdfs_base_url,hdfs_path)
 			log.info(hdfs_url)
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower,
