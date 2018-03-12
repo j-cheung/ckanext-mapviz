@@ -25,9 +25,9 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			var resource_format = this.options.resource_format
 			//if osm
 			if(resource_format == 'osm'){
-				if(hbase_osm){
+				if(this.options.hbase_osm){
 					// var parser = new DOMParser();
-					var doc = new DOMParser().parseFromString(hbase_osm, "application/xml");
+					var doc = new DOMParser().parseFromString(this.options.hbase_osm, "application/xml");
 					console.log(doc)
 					self.plotOSM(map,doc)
 				}
