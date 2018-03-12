@@ -74,7 +74,7 @@ class MapvizPlugin(p.SingletonPlugin):
 		hbase_osm = readHBase()
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower,
-				'hdfs_url':hdfs_url
+				'hdfs_url':hdfs_url,
 				'hbase_osm':hbase_osm}
 
 	# # ITemplateHelpers
