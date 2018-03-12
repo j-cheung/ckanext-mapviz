@@ -5,6 +5,8 @@ from logging import getLogger
 
 from ckan.common import config
 
+from readHBaseOSM import readHBase
+
 log = getLogger(__name__)
 
 class MapvizPlugin(p.SingletonPlugin):
@@ -69,9 +71,11 @@ class MapvizPlugin(p.SingletonPlugin):
 			hdfs_base_url = "http://138.68.183.248:50075/webhdfs/v1/"
 			hdfs_url = urlparse.urljoin(hdfs_base_url,hdfs_path)
 			log.info(hdfs_url)
+		hbase_osm = readHBase()
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower,
-				'hdfs_url':hdfs_url}
+				'hdfs_url':hdfs_url
+				'hbase_osm':hbase_osm}
 
 	# # ITemplateHelpers
 
