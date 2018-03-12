@@ -25,22 +25,31 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			var resource_format = this.options.resource_format
 			//if osm
 			if(resource_format == 'osm'){
-				console.log("osm")
-				jQuery.get(this.options.proxy_resource_url)
-				.done(
-					function(data){
-						console.log(data)
-						var parser = new DOMParser();
-						var doc = parser.parseFromString(data, "application/xml");
-						console.log(doc)
-						self.plotOSM(map,doc)
-					})
-				.fail(
-					function(jqXHR, textStatus, errorThrown) {
-						console.log("fail")
-						console.log(errorThrown)
-					}
-				);
+				if(hbase_osm){
+					// var parser = new DOMParser();
+					var doc = new DOMParser().parseFromString(hbase_osm, "application/xml");
+					console.log(doc)
+					self.plotOSM(map,doc)
+				}
+				else{
+					console.log("osm")
+					jQuery.get(this.options.proxy_resource_url)
+					.done(
+						function(data){
+							console.log(data)
+							var parser = new DOMParser();
+							var doc = parser.parseFromString(data, "application/xml");
+							console.log(doc)
+							self.plotOSM(map,doc)
+						})
+					.fail(
+						function(jqXHR, textStatus, errorThrown) {
+							console.log("fail")
+							console.log(errorThrown)
+						}
+					);
+				}
+				
 			}
 			//if geojson
 			else if(resource_format == 'geojson'){
