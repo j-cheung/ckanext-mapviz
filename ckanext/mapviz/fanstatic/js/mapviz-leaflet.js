@@ -95,7 +95,9 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 						});
 					};
 				};
-			};			
+			};
+
+			return html			
 		},
 
 		plotOSM: function(map, osmData) {
@@ -126,8 +128,11 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 
 			map.eachLayer(function(layer){
 				var feature = layer.feature
-				console.log(feature)
-			    layer.bindPopup(self.createPopUp(feature));
+				if(feature){
+			    	layer.bindPopup(self.createPopUp(feature));
+				}else{
+					console.log(layer)
+				}
 			});
 		},
 
