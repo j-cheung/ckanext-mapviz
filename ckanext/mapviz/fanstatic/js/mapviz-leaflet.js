@@ -127,7 +127,13 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			map.eachLayer(function(layer){
 				var feature = layer.feature
 				console.log(feature)
-			    layer.bindPopup(this.createPopUp(feature));
+			    layer.bindPopup(function(feature){
+			    	
+					Object.keys(feature).forEach(function(key){
+						console.log(key)
+						console.log(feature[key])
+					});
+			    });
 			});
 		},
 
