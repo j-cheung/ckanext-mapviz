@@ -125,10 +125,10 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			map.fitBounds(osmLayer.getBounds());
 
 			map.eachLayer(function(layer){
-				var feature = layer.feature
-				console.log(feature)
-			    layer.bindPopup(function(feature){
-			    	
+				// var feature = layer.feature
+				// console.log(feature)
+			    layer.bindPopup(function(layer){
+					var feature = layer.feature
 					Object.keys(feature).forEach(function(key){
 						console.log(key)
 						console.log(feature[key])
