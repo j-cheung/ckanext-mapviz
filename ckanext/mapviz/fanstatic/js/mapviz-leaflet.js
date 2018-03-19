@@ -76,6 +76,29 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			}	
 		},
 
+		createPopUp: function(feature) {
+			var html = '<div class="popup_content">';
+
+			// if(feature.type == "node"){
+			// 	if(feature.hasOwnProperty('id')){
+			// 		html += '<h2 class="node_id"> id: ' + feature.id + '</h2>'
+			// 	}
+			// 	if(feature.hasOwnProperty('latLng')){
+			// 		html += '<h2 class="node_lat"> lat: ' + feature.latLng.lat + '</h2>'
+			// 		html += '<h2 class="node_lon"> lon: ' + feature.latLng.lng + '</h2>'
+			// 	}
+			// 	if(feature.hasOwnProperty('tags')){
+			// 		html += '<h2 class="node_id"> id: ' + feature.id + '</h2>'
+			// 	}
+
+
+			// }
+			Object.keys(feature).forEach(key){
+				console.log(key)
+				console.log(feature[key])
+			}
+		}
+
 		plotOSM: function(map, osmData) {
 			var osmNodeStyle = {
 			    "radius": 5,
