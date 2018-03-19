@@ -97,6 +97,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 		},
 
 		plotOSM: function(map, osmData) {
+			var self = this;
 			var osmNodeStyle = {
 			    "radius": 5,
 			    "fillColor": "#ff7800",
@@ -124,14 +125,11 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			map.eachLayer(function(layer){
 				var feature = layer.feature
 				console.log(feature)
-			    layer.bindPopup(this.createPopUp(feature));
+			    layer.bindPopup(self.createPopUp(feature));
 			});
 		},
 
 		plotGeoJSON: function(map, geojsonData) {
-			// var gjLayer = L.geoJSON(geojsonData);
-			// map.fitBounds(gjLayer.getBounds());
-			// map.addLayer(gjLayer);
 
 			//styling
 			var geojsonMarkerOptions = {
