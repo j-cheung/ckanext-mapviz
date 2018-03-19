@@ -101,8 +101,8 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 	        }).addTo(map);
 			map.fitBounds(osmLayer.getBounds());
 
-			map.eachLayer(function(feature, layer){
-				console.log(feature)
+			map.eachLayer(function(layer){
+				console.log(layer)
 			    layer.bindPopup('Hello');
 			});
 		},
