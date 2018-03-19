@@ -93,10 +93,10 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 
 
 			// }
-			Object.keys(feature).forEach(key){
+			Object.keys(feature).forEach(function(key){
 				console.log(key)
 				console.log(feature[key])
-			}
+			});
 		}
 
 		plotOSM: function(map, osmData) {
