@@ -79,24 +79,21 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 		createPopUp: function(feature) {
 			var html = '<div class="popup_content">';
 
-			// if(feature.type == "node"){
-			// 	if(feature.hasOwnProperty('id')){
-			// 		html += '<h2 class="node_id"> id: ' + feature.id + '</h2>'
-			// 	}
-			// 	if(feature.hasOwnProperty('latLng')){
-			// 		html += '<h2 class="node_lat"> lat: ' + feature.latLng.lat + '</h2>'
-			// 		html += '<h2 class="node_lon"> lon: ' + feature.latLng.lng + '</h2>'
-			// 	}
-			// 	if(feature.hasOwnProperty('tags')){
-			// 		html += '<h2 class="node_id"> id: ' + feature.id + '</h2>'
-			// 	}
-
-
-			// }
-			Object.keys(feature).forEach(function(key){
-				console.log(key)
-				console.log(feature[key])
-			});
+			if(feature.type == "node"){
+				if(feature.hasOwnProperty('id')){
+					html += '<h2 class="node_id"> id: ' + feature.id + '</h2>'
+				}
+				if(feature.hasOwnProperty('latLng')){
+					html += '<h2 class="node_lat"> lat: ' + feature.latLng.lat + '</h2>'
+					html += '<h2 class="node_lon"> lon: ' + feature.latLng.lng + '</h2>'
+				}
+				if(feature.hasOwnProperty('tags')){
+					Object.keys(feature.tags).forEach(function(key){
+						var tag_v = feature.tags[key]
+						html += '<h2 class="node_tag">' + ' ' + key + ': ' + tag_v + '</h2>'
+					});
+				}
+			}
 		},
 
 		plotOSM: function(map, osmData) {
@@ -125,15 +122,9 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			map.fitBounds(osmLayer.getBounds());
 
 			map.eachLayer(function(layer){
-				// var feature = layer.feature
-				// console.log(feature)
-			    layer.bindPopup(function(layer){
-					var feature = layer.feature
-					Object.keys(feature).forEach(function(key){
-						console.log(key)
-						console.log(feature[key])
-					});
-			    });
+				var feature = layer.feature
+				console.log(feature)
+			    layer.bindPopup(this.createPopUp(feature));
 			});
 		},
 
