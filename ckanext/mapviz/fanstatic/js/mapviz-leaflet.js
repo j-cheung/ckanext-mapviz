@@ -95,11 +95,15 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			var osmLayer = new L.OSM.DataLayer(osmData,{
 		        styles : {
 		        	node: osmNodeStyle,
-			          way: osmWayAreaStyle,
-			          area: osmWayAreaStyle
+			        way: osmWayAreaStyle,
+			        area: osmWayAreaStyle
 		        }
 	        }).addTo(map);
 			map.fitBounds(osmLayer.getBounds());
+			
+			map.eachLayer(function(layer){
+			    layer.bindPopup('Hello');
+			});
 		},
 
 		plotGeoJSON: function(map, geojsonData) {
