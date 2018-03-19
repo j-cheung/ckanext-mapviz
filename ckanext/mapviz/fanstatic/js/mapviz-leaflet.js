@@ -129,10 +129,12 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 				console.log(feature)
 			    layer.bindPopup(function(feature){
 			    	
-					Object.keys(feature).forEach(function(key){
-						console.log(key)
-						console.log(feature[key])
-					});
+					for (var key in dictionary) {
+					    // check if the property/key is defined in the object itself, not in parent
+					    if (dictionary.hasOwnProperty(key)) {           
+					        console.log(key, dictionary[key]);
+					    }
+					}
 			    });
 			});
 		},
