@@ -81,19 +81,24 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 
 			if(feature.hasOwnProperty('type')){
 				if(feature.type == "node"){
+					html += '<table class="node_popup_table">'
 					if(feature.hasOwnProperty('id')){
-						html += '<h2 class="node_id"> id: ' + feature.id + '</h2>'
+						// html += '<h2 class="node_id"> id: ' + feature.id + '</h2>'
+						html += '<tr>' + '<td>id</td>' + '<td>' + feature.id + '</td>' + '</tr>'
 					};
 					if(feature.hasOwnProperty('latLng')){
-						html += '<h2 class="node_lat"> lat: ' + feature.latLng.lat + '</h2>'
-						html += '<h2 class="node_lon"> lon: ' + feature.latLng.lng + '</h2>'
+						// html += '<h2 class="node_lat"> lat: ' + feature.latLng.lat + '</h2>'
+						// html += '<h2 class="node_lon"> lon: ' + feature.latLng.lng + '</h2>'
+						html += '<tr>' + '<td>Latitude</td>' + '<td>' + feature.latLng.lat + '</td>' + '</tr>'
+						html += '<tr>' + '<td>Longitude</td>' + '<td>' + feature.latLng.lng + '</td>' + '</tr>'
 					};
 					if(feature.hasOwnProperty('tags')){
 						Object.keys(feature.tags).forEach(function(key){
-							var tag_v = feature.tags[key]
-							html += '<h2 class="node_tag">' + ' ' + key + ': ' + tag_v + '</h2>'
+							// html += '<h2 class="node_tag">' + ' ' + key + ': ' + feature.tags[key] + '</h2>'
+							html += '<tr>' + '<td>' + key + '</td>' + '<td>' + feature.tags[key] + '</td>' + '</tr>'
 						});
 					};
+					html += '</table>'
 				};
 			};
 
