@@ -97,7 +97,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 				console.log(key)
 				console.log(feature[key])
 			});
-		}
+		},
 
 		plotOSM: function(map, osmData) {
 			var osmNodeStyle = {
