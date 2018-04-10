@@ -135,8 +135,6 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 				var feature = layer.feature
 				if(feature){
 			    	layer.bindPopup(self.createPopUp(feature));
-				}else{
-					console.log(layer)
 				}
 			});
 		},

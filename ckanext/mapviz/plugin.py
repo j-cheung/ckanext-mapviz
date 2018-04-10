@@ -5,7 +5,7 @@ from logging import getLogger
 
 from ckan.common import config
 
-from readHBaseOSM import readHBase
+from readHBase import readOSM
 
 log = getLogger(__name__)
 
@@ -44,7 +44,6 @@ class MapvizPlugin(p.SingletonPlugin):
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
 		format_lower = data_dict['resource'].get('format', '').lower()
-		log.info('Data format {0}'.format("hi"))
 		correct_format = format_lower in ['geojson','osm']
 		return correct_format
 
@@ -59,15 +58,17 @@ class MapvizPlugin(p.SingletonPlugin):
 		if self.proxy_enabled and not self.same_domain:
 			data_dict['resource']['original_url'] = \
 				data_dict['resource'].get('url')
-			# data_dict['resource']['url'] = \
-			# 	proxy.get_proxified_resource_url(data_dict)
 			proxy_resource_url = proxy.get_proxified_resource_url(data_dict)
 			print(proxy_resource_url)
 			log.info('Proxy URL {0}'.format(proxy_resource_url))
-		hbase_osm = readHBase()
+		hbase_osm = None
+		if data_dict['hbase_filename']:
+			host = "138.68.183.248"
+			hbase_osm = readHBase(host, data_dict['hbase_namespace'], data_dict['hbase_table'], data_dict['hbase_filename'])
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower,
 				'hbase_osm':hbase_osm}
+
 
 	# # ITemplateHelpers
 
