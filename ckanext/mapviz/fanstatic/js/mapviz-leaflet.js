@@ -28,6 +28,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			}).addTo(map);
 
 			var resource_format = this.options.resource_format
+			console.log(resource_format)
 			//if osm
 			if(resource_format == 'osm'){
 				console.log("osm")
