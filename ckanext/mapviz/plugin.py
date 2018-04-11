@@ -5,7 +5,7 @@ from logging import getLogger
 
 from ckan.common import config
 
-from readHBase import readOSM
+from utils.readHBase import readOSM
 
 log = getLogger(__name__)
 
