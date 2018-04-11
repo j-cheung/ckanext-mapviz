@@ -62,7 +62,8 @@ class MapvizPlugin(p.SingletonPlugin):
 			print(proxy_resource_url)
 			log.info('Proxy URL {0}'.format(proxy_resource_url))
 		hbase_osm = None
-		if data_dict['hbase_filename']:
+		
+		if data_dict['resource']['hbase_filename']:
 			host = "138.68.183.248"
 			hbase_osm = readHBase(host, data_dict['hbase_namespace'], data_dict['hbase_table'], data_dict['hbase_filename'])
 		return {'proxy_resource_url':proxy_resource_url,
