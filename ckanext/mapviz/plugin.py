@@ -65,7 +65,7 @@ class MapvizPlugin(p.SingletonPlugin):
 		
 		if data_dict['resource']['hbase_filename']:
 			host = "138.68.183.248"
-			hbase_osm = readOSM(host, data_dict['hbase_namespace'], data_dict['hbase_table'], data_dict['hbase_filename'])
+			hbase_osm = readOSM(host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower,
 				'hbase_osm':hbase_osm}
