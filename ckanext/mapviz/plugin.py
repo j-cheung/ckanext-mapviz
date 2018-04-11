@@ -64,8 +64,8 @@ class MapvizPlugin(p.SingletonPlugin):
 		hbase_osm = None
 		
 		if data_dict['resource']['hbase_filename']:
-			host = "138.68.183.248"
-			hbase_osm = readOSM(host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
+			hbase_host = config.get('ckan.mapviz.hbase_host', "138.68.183.248")
+			hbase_osm = readOSM(hbase_host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower,
 				'hbase_osm':hbase_osm}
