@@ -30,14 +30,16 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			var resource_format = this.options.resource_format
 			//if osm
 			if(resource_format == 'osm'){
+				console.log("osm")
 				if(this.options.hbase_osm){
+					console.log("osm hbase")
 					// var parser = new DOMParser();
 					var doc = new DOMParser().parseFromString(this.options.hbase_osm, "application/xml");
 					console.log(doc)
 					self.plotOSM(map,doc)
 				}
 				else{
-					console.log("osm")
+					console.log("no hbase")
 					jQuery.get(this.options.proxy_resource_url)
 					.done(
 						function(data){
