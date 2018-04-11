@@ -17,12 +17,11 @@ def readOSM(host, namespace, table_name, filename):
 		node_prefix = filename + '_node_'
 		for row_key, data in table.scan(row_prefix=node_prefix.encode(encoding)):
 			node_id = row_key.decode(encoding).split("_")[-1]
-			print(node_id)
 			decoded_dict = {k.decode(encoding):v.decode(encoding) for k, v in data.items()}
-			print(decoded_dict)
 			node = et.Element('node')
 			node.set('id',node_id)
 			for key, value in decoded_dict.items():
+				print(key,value)
 				key_head, key_tail = key.split(':',maxsplit=1)
 				if(key_head == "node"):
 					node.set(key_tail,value)
