@@ -21,8 +21,7 @@ def readOSM(host, namespace, table_name, filename):
 			node = et.Element('node')
 			node.set('id',node_id)
 			for key, value in decoded_dict.items():
-				print(key,value)
-				key_head, key_tail = key.split(':',maxsplit=1)
+				key_head, key_tail = key.split(':',1)
 				if(key_head == "node"):
 					node.set(key_tail,value)
 				elif(key_head == "tag"):
@@ -39,7 +38,7 @@ def readOSM(host, namespace, table_name, filename):
 			way = et.Element('way')
 			way.set('id',way_id)
 			for key, value in decoded_dict.items():
-				key_head, key_tail = key.split(':',maxsplit=1)
+				key_head, key_tail = key.split(':',1)
 				if(key_head == "way"):
 					#nodes of way
 					if(key_tail[:2] == "nd"):
@@ -62,7 +61,7 @@ def readOSM(host, namespace, table_name, filename):
 			relation = et.Element('relation')
 			relation.set('id',relation_id)
 			for key, value in decoded_dict.items():
-				key_head, key_tail = key.split(':',maxsplit=1)
+				key_head, key_tail = key.split(':',1)
 				if(key_head == "relation"):
 					#nodes of relation
 					if(key_tail[:3] == "mem"):
