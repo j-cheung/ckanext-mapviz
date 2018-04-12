@@ -44,6 +44,8 @@ class TestMapvizPlugin(object):
             resource_id=resource['id'],
             view_type='mapviz')
 
+        print(resource_view)
+
 
         # assert_equal 
 
