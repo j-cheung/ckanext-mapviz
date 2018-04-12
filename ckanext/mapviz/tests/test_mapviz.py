@@ -36,10 +36,10 @@ class TestMapvizPlugin(object):
             package_id=dataset['id'],
             url='http://dummy.link.data', 
             format='geojson')
-        for resource_format in ['geojson', 'osm']:
-            data_dict = {'resource':{'url' : 'http://dummy.link.data',
-                                     'format' : resource_format}}
-            assert self.p.can_view(data_dict)
+        # for resource_format in ['geojson', 'osm']:
+        #     data_dict = {'resource':{'url' : 'http://dummy.link.data',
+        #                              'format' : resource_format}}
+        #     assert self.p.can_view(data_dict)
         resource_view = factories.ResourceView(
             resource_id=resource['id'],
             view_type='mapviz')
