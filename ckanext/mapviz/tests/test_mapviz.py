@@ -15,8 +15,6 @@ import ckan.logic as logic
 
 import ckan.tests.helpers as helpers
 
-import ckanext.mapviz.plugin as plugin
-
 class TestMapvizPlugin(object):
     @classmethod
     def setup_class(cls):
@@ -42,9 +40,9 @@ class TestMapvizPlugin(object):
             data_dict = {'resource':{'url' : 'http://dummy.link.data',
                                      'format' : resource_format}}
             assert self.p.can_view(data_dict)
-        # resource_view = factories.ResourceView(
-        #     resource_id=resource['id'],
-        #     view_type='mapviz',
+        resource_view = factories.ResourceView(
+            resource_id=resource['id'],
+            view_type='mapviz')
 
 
         # assert_equal 
