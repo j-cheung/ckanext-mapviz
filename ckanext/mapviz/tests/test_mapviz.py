@@ -40,6 +40,7 @@ class TestMapvizPlugin(object):
         for resource_format in ['geojson', 'osm']:
             data_dict = {'resource':{'url' : 'http://dummy.link.data',
                                      'format' : resource_format}}
+            print(resource_format, self.plugin.can_view(data_dict))
             assert self.plugin.can_view(data_dict)
         # resource_view = factories.ResourceView(
         #     resource_id=resource['id'],
