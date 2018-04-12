@@ -32,32 +32,27 @@ class TestMapvizPlugin(object):
         ckan.plugins.unload('image_view')
 
     def test_can_view_with_format(self):
-        dataset = factories.Dataset()
-        resource = factories.Resource(  
-            package_id=dataset['id'],
-            url='http://dummy.link.data', 
-            format='geojson')
+        # dataset = factories.Dataset()
+        # resource = factories.Resource(  
+        #     package_id=dataset['id'],
+        #     url='http://dummy.link.data', 
+        #     format='geojson')
         for resource_format in ['geojson', 'osm']:
             data_dict = {'resource':{'url' : 'http://dummy.link.data',
                                      'format' : resource_format}}
             print(resource_format, self.plugin.can_view(data_dict))
             assert self.plugin.can_view(data_dict)
-        # resource_view = factories.ResourceView(
-        #     resource_id=resource['id'],
-        #     view_type='mapviz')
 
-        # print(resource_view)
-
-    # def test_cannot_view_with_format(self):
-    #     dataset = factories.Dataset()
-    #     resource = factories.Resource(  
-    #         package_id=dataset['id'],
-    #         url='http://dummy.link.data', 
-    #         format='xml')
-    #     # for resource_format in ['geojson', 'osm']:
-    #     #     data_dict = {'resource':{'url' : 'http://dummy.link.data',
-    #     #                              'format' : resource_format}}
-    #     #     assert self.p.can_view(data_dict)
+    def test_cannot_view_with_format(self):
+        # dataset = factories.Dataset()
+        # resource = factories.Resource(  
+        #     package_id=dataset['id'],
+        #     url='http://dummy.link.data', 
+        #     format='xml')
+        for resource_format in ['xml', 'txt']:
+            data_dict = {'resource':{'url' : 'http://dummy.link.data',
+                                     'format' : resource_format}}
+            assert not self.p.can_view(data_dict)
     #     resource_view = factories.ResourceView(
     #         resource_id=resource['id'],
     #         view_type='mapviz')
