@@ -18,7 +18,8 @@ class TestMapvizPlugin(object):
 	@classmethod
 	def setup_class(cls):
 		ckan.plugins.load('mapviz')
-		ckan.plugins.load('resource_proxy')
+		if not ckan.plugins.plugin_loaded('resource_proxy'):
+			ckan.plugins.load('resource_proxy')
 		cls.plugin = ckan.plugins.get_plugin('mapviz')
 		if not ckan.plugins.plugin_loaded('image_view'):
 			ckan.plugins.load('image_view')
