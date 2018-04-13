@@ -34,6 +34,7 @@ class TestMapvizPlugin(object):
 		ckan.plugins.unload('mapviz')
 		ckan.plugins.unload('image_view')
 		ckan.plugins.unload('resource_proxy')
+		model.repo.rebuild_db()
 
 	def test_can_view_with_format(self):
 		for resource_format in ['geojson', 'osm']:
