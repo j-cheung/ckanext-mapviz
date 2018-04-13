@@ -71,7 +71,7 @@ class TestMapvizPlugin(object):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : '',
-									 'on_same_domain': True}}
+									 'on_same_domain': False}}
 			assert_true(self.plugin.can_view(data_dict)) 
 
 	# def test_
