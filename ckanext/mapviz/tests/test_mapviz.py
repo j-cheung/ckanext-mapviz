@@ -75,6 +75,8 @@ class TestMapvizPlugin(object):
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : resource_format,
 									 'on_same_domain': False}}
+			from ckan.common import config
+			print(config.get('ckan.plugins'))
 			print(self.plugin.proxy_enabled)
 			# self.plugin.proxy_enabled = True
 			assert_true(self.plugin.can_view(data_dict)) 
