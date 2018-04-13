@@ -4,8 +4,7 @@
 
 '''
 
-from nose.tools import assert_raises
-from nose.tools import assert_equal
+from nose.tools import assert_true, assert_false, assert_equal, assert_raises
 
 import ckan.model as model
 import ckan.plugins
@@ -41,7 +40,7 @@ class TestMapvizPlugin(object):
 			data_dict = {'resource':{'url' : 'http://dummy.link.data',
 									 'format' : resource_format}}
 			# print(resource_format, self.plugin.can_view(data_dict))
-			assert self.plugin.can_view(data_dict)
+			assert_true(self.plugin.can_view(data_dict)) 
 
 	def test_cannot_view_with_format(self):
 		# dataset = factories.Dataset()
