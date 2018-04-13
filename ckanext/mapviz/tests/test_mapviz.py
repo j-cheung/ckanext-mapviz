@@ -68,13 +68,20 @@ class TestMapvizPlugin(object):
 
 	# @helpers.change_config('ckan.plugins', 'resource_proxy')
 	def test_can_view_proxy(self):
-		ckan.plugins.load('resource_proxy')
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : resource_format,
 									 'on_same_domain': False}}
 			# print(self.plugin.proxy_enabled)
-			# self.plugin.proxy_enabled = True
+			self.plugin.proxy_enabled = True
 			assert_true(self.plugin.can_view(data_dict)) 
-		ckan.plugins.unload('resource_proxy')
+
+	def test_cannot_view_proxy(self):
+		for resource_format in ['geojson', 'osm']:
+			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
+									 'format' : resource_format,
+									 'on_same_domain': False}}
+			# print(self.plugin.proxy_enabled)
+			self.plugin.proxy_enabled = False
+			assert_false(self.plugin.can_view(data_dict)) 
 	# def test_
