@@ -41,7 +41,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 				}
 				else{
 					console.log("no hbase")
-					jQuery.get(this.options.proxy_resource_url)
+					jQuery.get(this.options.resource_url)
 					.done(
 						function(data){
 							console.log(data)

@@ -60,3 +60,5 @@ class TestMapvizPlugin(object):
 			data_dict = {'resource':{'url' : 'http://bad.link.data.'+resource_format,
 									 'format' : ''}}
 			assert_false(self.plugin.can_view(data_dict))
+
+	# def test_

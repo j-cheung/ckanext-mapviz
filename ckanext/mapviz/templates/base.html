@@ -8,13 +8,11 @@
 {% block page %}
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
 	<div 	data-module="mapviz-leaflet"
-			data-module-proxy_resource_url="{{ proxy_resource_url }}"
+			data-module-resource_url="{{ resource_url }}"
 			data-module-resource_format="{{resource_format}}"
 			data-module-hbase_osm="{{hbase_osm}}"
 	>
 	</div>
 	{% resource 'mapviz/mapviz_view' %}
-	{% resource 'mapviz/js/vendor/turf/turf.js' %}
-	{% resource 'mapviz/js/vendor/osmtogeojson/osmtogeojson.js' %}
 
 {% endblock %}

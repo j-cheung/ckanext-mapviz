@@ -36,6 +36,14 @@ class MapvizPlugin(p.SingletonPlugin):
 
 		return format_lower		
 
+	def _get_format_lower(self,data_dict):
+		format_lower = data_dict['resource'].get('format', '').lower()
+		# Guess from file extension
+		if not format_lower and data_dict['resource'].get('url'):
+			format_lower = self._guess_format_from_extension(
+				data_dict['resource'].get('url'))
+		return format_lower
+
 	# IResourceView
 	def info(self):
 			return {'name': 'mapviz',# Name of plugin
@@ -45,40 +53,32 @@ class MapvizPlugin(p.SingletonPlugin):
 
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
-		format_lower = data_dict['resource'].get('format', '').lower()
-
-		# Guess from file extension
-		if not format_lower and data_dict['resource'].get('url'):
-			format_lower = self._guess_format_from_extension(
-				data_dict['resource'].get('url'))
-
+		format_lower = self._get_format_lower(data_dict)
 		if not format_lower:
 			return False
-
 		correct_format = format_lower in ['geojson','osm']
-		return correct_format
+		same_domain = data_dict['resource'].get('on_same_domain')
+		can_view_from_domain = self.proxy_enabled or same_domain
+		return correct_format and can_view_from_domain
 
 	def view_template(self, context, data_dict):
 		return 'base.html'
 
 	def setup_template_variables(self, context, data_dict):
-		format_lower = data_dict['resource'].get('format', '').lower()
-		log.info('Data format {0}'.format(format_lower))
+		resource_format = self._get_format_lower(data_dict)
 		import ckanext.resourceproxy.plugin as proxy
-		self.same_domain = data_dict['resource'].get('on_same_domain')
-		if self.proxy_enabled and not self.same_domain:
-			data_dict['resource']['original_url'] = \
-				data_dict['resource'].get('url')
-			proxy_resource_url = proxy.get_proxified_resource_url(data_dict)
-			print(proxy_resource_url)
-			log.info('Proxy URL {0}'.format(proxy_resource_url))
-		hbase_osm = None
-		
-		if data_dict['resource']['hbase_filename']:
+		same_domain = data_dict['resource'].get('on_same_domain')
+		if self.proxy_enabled and not same_domain:
+			resource_url = proxy.get_proxified_resource_url(data_dict)
+			log.info('Proxy URL {0}'.format(resource_url))
+		else:
+			resource_url = data_dict['resource'].get('url')
+		hbase_osm = None		
+		if data_dict['resource']['hbase_enabled']:
 			hbase_host = config.get('ckan.mapviz.hbase_host', '')
 			hbase_osm = readOSM(hbase_host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
-		return {'proxy_resource_url':proxy_resource_url,
-				'resource_format':format_lower,
+		return {'resource_url':resource_url,
+				'resource_format':resource_format,
 				'hbase_osm':hbase_osm}
 
 
