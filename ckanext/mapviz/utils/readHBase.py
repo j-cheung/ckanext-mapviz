@@ -87,9 +87,3 @@ def readOSM(host, namespace, table_name, filename):
 		conn.close()
 
 	return et.tostring(root)
-
-host = "138.68.183.248"
-namespace = "sample_data"
-table_name = "osm"
-filename = "corrected_amps.osm"
-print(readOSM(host, namespace, table_name, filename))
