@@ -75,6 +75,7 @@ class MapvizPlugin(p.SingletonPlugin):
 			resource_url = data_dict['resource'].get('url')
 		hbase_osm = None		
 		if data_dict['resource']['hbase_enabled']:
+			log.info('hbase enabled')
 			hbase_host = config.get('ckan.mapviz.hbase_host', '')
 			hbase_osm = readOSM(hbase_host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
 		return {'resource_url':resource_url,
