@@ -92,7 +92,6 @@ class TestMapvizPlugin(object):
 	def _mock_proxified_resource_url(data_dict):
 		return data_dict['resource'].get('url')
 
-	# @mock.patch('ckanext.resourceproxy.plugin.get_proxified_resource_url',side_effect=_mock_proxified_resource_url)
 	def test_setup_teamplate_variables_proxy_no_hbase(self):
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
@@ -106,9 +105,41 @@ class TestMapvizPlugin(object):
 										 'on_same_domain': False,
 										 'hbase_enabled': ''}}
 			expected_data = {'resource_url':resource_url,
-							 'resource_format':resource_format}
-
+							 'resource_format':resource_format,
+							 'hbase_osm':None}
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
-
 			assert_equal(result_data, expected_data)
 
+	def test_setup_teamplate_variables_no_proxy_no_hbase(self):
+		self.plugin.proxy_enabled = True
+		mock_model = mock.MagicMock()
+		context = {'model': mock_model}
+		for resource_format in ['geojson', 'osm']:
+			resource_url = 'http://dummy.link.data/data.'+resource_format
+			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
+										 'format' : resource_format,
+										 'on_same_domain': False,
+										 'hbase_enabled': ''}}
+			expected_data = {'resource_url':resource_url,
+							 'resource_format':resource_format,
+							 'hbase_osm':None}
+			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
+			assert_equal(result_data, expected_data)
+
+		def test_setup_teamplate_variables_proxy_hbase(self):
+		self.plugin.proxy_enabled = True
+		mock_model = mock.MagicMock()
+		context = {'model': mock_model}
+		for resource_format in ['geojson', 'osm']:
+			resource_url = 'http://dummy.link.data/data.'+resource_format
+			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
+										 'format' : resource_format,
+										 'on_same_domain': False,
+										 'hbase_enabled': 'True'}}
+			mock_osm = "<osm></osm>"
+			readOSM = mock.Mock(return_value=mock_osm)
+			expected_data = {'resource_url':resource_url,
+							 'resource_format':resource_format,
+							 'hbase_osm':mock_osm}
+			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
+			assert_equal(result_data, expected_data)
