@@ -33,32 +33,45 @@ class TestMapvizPlugin(object):
 	def test_can_view_with_format(self):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data',
-									 'format' : resource_format}}
+									 'format' : resource_format,
+									 'on_same_domain': True}}
 			assert_true(self.plugin.can_view(data_dict)) 
 
 	def test_cannot_view_with_format(self):
 		for resource_format in ['xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data',
-									 'format' : resource_format}}
+									 'format' : resource_format,
+									 'on_same_domain': True}}
 			assert_false(self.plugin.can_view(data_dict))
 	
 	def test_can_view_from_url(self):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
-									 'format' : ''}}
+									 'format' : '',
+									 'on_same_domain': True}}
 			assert_true(self.plugin.can_view(data_dict)) 
 
 
 	def test_cannot_view_from_url(self):
 		for resource_format in ['xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
-									 'format' : ''}}
+									 'format' : '',
+									 'on_same_domain': True}}
 			assert_false(self.plugin.can_view(data_dict))
 
 	def test_cannot_view_bad_url(self):
 		for resource_format in ['geojson','osm','xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://bad.link.data.'+resource_format,
-									 'format' : ''}}
+									 'format' : '',
+									 'on_same_domain': True}}
 			assert_false(self.plugin.can_view(data_dict))
+
+	@helpers.change_config('ckan.plugins', 'resource_proxy')
+	def test_can_view_proxy(self):
+		for resource_format in ['geojson', 'osm']:
+			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
+									 'format' : '',
+									 'on_same_domain': True}}
+			assert_true(self.plugin.can_view(data_dict)) 
 
 	# def test_
