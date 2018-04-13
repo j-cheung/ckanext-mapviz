@@ -8,7 +8,6 @@ from logging import getLogger
 
 from ckan.common import config
 
-from utils.readHBase import readOSM
 
 log = getLogger(__name__)
 
@@ -77,7 +76,8 @@ class MapvizPlugin(p.SingletonPlugin):
 		if data_dict['resource']['hbase_enabled']:
 			log.info('hbase enabled')
 			hbase_host = config.get('ckan.mapviz.hbase_host', '')
-			hbase_osm = readOSM(hbase_host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
+			import utils.readHBase as readHBase
+			hbase_osm = readHBase.readOSM(hbase_host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
 		return {'resource_url':resource_url,
 				'resource_format':resource_format,
 				'hbase_osm':hbase_osm}
