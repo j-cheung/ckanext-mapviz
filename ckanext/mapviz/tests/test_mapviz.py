@@ -89,6 +89,9 @@ class TestMapvizPlugin(object):
 
 	def test_setup_teamplate_variables_proxy_no_hbase(self):
 		self.plugin.proxy_enabled = True
+		context = {'model': model,
+               'session': model.Session,
+               'user': model.User.get('testsysadmin').name}
 		for resource_format in ['geojson', 'osm']:
 			resource_url = 'http://dummy.link.data/data.'+resource_format
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
@@ -98,6 +101,6 @@ class TestMapvizPlugin(object):
 			expected_data = {'resource_url':resource_url,
 							 'resource_format':resource_format}
 
-			result_data = self.plugin.setup_template_variables(data_dict=data_dict)
+			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 
 
