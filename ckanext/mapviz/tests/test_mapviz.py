@@ -60,10 +60,10 @@ class TestMapvizPlugin(object):
             data_dict = {'resource':{'url' : 'http://dummy.link.data.'+resource_format,
                                      'format' : ''}}
             print(resource_format, self.plugin.can_view(data_dict))
-            assert not self.plugin.can_view(data_dict)
+            assert self.plugin.can_view(data_dict)
 
 
-    def test_can_view_from_url(self):
+    def test_cannot_view_from_url(self):
         for resource_format in ['xml', 'txt']:
             data_dict = {'resource':{'url' : 'http://dummy.link.data.'+resource_format,
                                      'format' : ''}}
