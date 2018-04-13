@@ -149,6 +149,7 @@ class TestMapvizPlugin(object):
 			assert_equal(result_data, expected_data)
 
 	def test_template(self):
+		model.repo.rebuild_db()
 		app = self._get_test_app()
 
         dataset = factories.Dataset()
