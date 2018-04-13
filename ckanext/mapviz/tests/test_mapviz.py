@@ -56,7 +56,6 @@ class TestMapvizPlugin(object):
 									 'on_same_domain': True}}
 			assert_true(self.plugin.can_view(data_dict)) 
 
-
 	def test_cannot_view_from_url(self):
 		for resource_format in ['xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
