@@ -111,7 +111,7 @@ class TestMapvizPlugin(object):
 			assert_equal(result_data, expected_data)
 
 	def test_setup_teamplate_variables_no_proxy_no_hbase(self):
-		self.plugin.proxy_enabled = True
+		self.plugin.proxy_enabled = False
 		mock_model = mock.MagicMock()
 		context = {'model': mock_model}
 		for resource_format in ['geojson', 'osm']:
@@ -132,6 +132,8 @@ class TestMapvizPlugin(object):
 		context = {'model': mock_model}
 		for resource_format in ['geojson', 'osm']:
 			resource_url = 'http://dummy.link.data/data.'+resource_format
+			import ckanext.resourceproxy.plugin as proxy
+			proxy.get_proxified_resource_url = mock.Mock(return_value=resource_url)
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 										 'format' : resource_format,
 										 'on_same_domain': False,
