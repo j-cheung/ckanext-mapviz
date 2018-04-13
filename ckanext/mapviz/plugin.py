@@ -50,6 +50,7 @@ class MapvizPlugin(p.SingletonPlugin):
 		print('format is {0}'.format(format_lower))
 		# Guess from file extension
 		if not format_lower and data_dict['resource'].get('url'):
+			print(data_dict['resource'].get('url'))
 			format_lower = self._guess_format_from_extension(
 				data_dict['resource'].get('url'))
 			print('guess from url format is {0}'.format(format_lower))

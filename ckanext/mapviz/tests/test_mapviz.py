@@ -40,7 +40,7 @@ class TestMapvizPlugin(object):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data',
 									 'format' : resource_format}}
-			print(resource_format, self.plugin.can_view(data_dict))
+			# print(resource_format, self.plugin.can_view(data_dict))
 			assert self.plugin.can_view(data_dict)
 
 	def test_cannot_view_with_format(self):
@@ -52,14 +52,14 @@ class TestMapvizPlugin(object):
 		for resource_format in ['xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data',
 									 'format' : resource_format}}
-			print(resource_format, self.plugin.can_view(data_dict))
+			# print(resource_format, self.plugin.can_view(data_dict))
 			assert not self.plugin.can_view(data_dict)
 	
 	def test_can_view_from_url(self):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data.'+resource_format,
 									 'format' : ''}}
-			print(resource_format, self.plugin.can_view(data_dict))
+			# print(resource_format, self.plugin.can_view(data_dict))
 			assert self.plugin.can_view(data_dict)
 
 
@@ -67,5 +67,5 @@ class TestMapvizPlugin(object):
 		for resource_format in ['xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data.'+resource_format,
 									 'format' : ''}}
-			print(resource_format, self.plugin.can_view(data_dict))
+			# print(resource_format, self.plugin.can_view(data_dict))
 			assert not self.plugin.can_view(data_dict)
