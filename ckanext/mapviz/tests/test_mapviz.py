@@ -158,7 +158,7 @@ class TestMapvizPlugin(object):
 
         resource_view = factories.ResourceView(
             resource_id=resource['id'],
-            view_type='mapviz')
+            view_type='Mapviz')
 
         url = url_for(controller='package', action='resource_read',
                       id=dataset['name'], resource_id=resource['id'])
