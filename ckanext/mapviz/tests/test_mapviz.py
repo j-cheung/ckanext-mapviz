@@ -110,4 +110,5 @@ class TestMapvizPlugin(object):
 
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 
+			assert_equal(result_data, expected_data)
 
