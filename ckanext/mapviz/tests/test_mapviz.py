@@ -89,10 +89,7 @@ class TestMapvizPlugin(object):
 	
 	#Test setup_template_variables
 
-	def _mock_proxified_resource_url(data_dict):
-		return data_dict['resource'].get('url')
-
-	def test_setup_teamplate_variables_proxy_no_hbase(self):
+	def test_setup_template_variables_proxy_no_hbase(self):
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
 		context = {'model': mock_model}
@@ -110,7 +107,7 @@ class TestMapvizPlugin(object):
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 			assert_equal(result_data, expected_data)
 
-	def test_setup_teamplate_variables_no_proxy_no_hbase(self):
+	def test_setup_template_variables_no_proxy_no_hbase(self):
 		self.plugin.proxy_enabled = False
 		mock_model = mock.MagicMock()
 		context = {'model': mock_model}
@@ -126,7 +123,7 @@ class TestMapvizPlugin(object):
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 			assert_equal(result_data, expected_data)
 
-	def test_setup_teamplate_variables_proxy_hbase(self):
+	def test_setup_template_variables_proxy_hbase(self):
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
 		context = {'model': mock_model}
@@ -150,3 +147,22 @@ class TestMapvizPlugin(object):
 							 'hbase_osm':mock_osm}
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 			assert_equal(result_data, expected_data)
+
+	def test_template(self):
+		app = self._get_test_app()
+
+        dataset = factories.Dataset()
+
+        resource = factories.Resource(package_id=dataset['id'],
+                                      url='http://some.website.html')
+
+        resource_view = factories.ResourceView(
+            resource_id=resource['id'],
+            view_type='mapviz')
+
+        url = url_for(controller='package', action='resource_read',
+                      id=dataset['name'], resource_id=resource['id'])
+
+        response = app.get(url)
+
+        print(response.body)
