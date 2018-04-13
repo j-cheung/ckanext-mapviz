@@ -14,6 +14,8 @@ import ckan.logic as logic
 
 import ckan.tests.helpers as helpers
 
+import mock
+
 class TestMapvizPlugin(object):
 	@classmethod
 	def setup_class(cls):
