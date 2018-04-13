@@ -96,9 +96,7 @@ class TestMapvizPlugin(object):
 	def test_setup_teamplate_variables_proxy_no_hbase(self):
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
-		context = {'model': mock_model,
-				   'session': model.Session,
-				   'user': factories.User()}
+		context = {'model': mock_model}
 		for resource_format in ['geojson', 'osm']:
 			resource_url = 'http://dummy.link.data/data.'+resource_format
 			import ckanext.resourceproxy.plugin as proxy
