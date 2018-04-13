@@ -72,6 +72,7 @@ class TestMapvizPlugin(object):
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : '',
 									 'on_same_domain': False}}
+			print(self.plugin.proxy_enabled)
 			assert_true(self.plugin.can_view(data_dict)) 
 
 	# def test_
