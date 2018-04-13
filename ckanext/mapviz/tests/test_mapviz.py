@@ -126,7 +126,7 @@ class TestMapvizPlugin(object):
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 			assert_equal(result_data, expected_data)
 
-	def test_setup_teamplate_variables_proxy_hbase(self, patch):
+	def test_setup_teamplate_variables_proxy_hbase(self):
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
 		context = {'model': mock_model}
