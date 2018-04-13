@@ -2,15 +2,15 @@
 
 {% block styles %}
   {{ super() }}
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
 {% endblock %}
 
 {% block page %}
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
 	<div 	data-module="mapviz-leaflet"
 			data-module-resource_url="{{ resource_url }}"
 			data-module-resource_format="{{resource_format}}"
-			data-module-hbase_osm="{{hbase_osm}}"
+			{% if hbase_osm %}
+				data-module-hbase_osm="{{hbase_osm}}"
+			{% endif %}
 	>
 	</div>
 	{% resource 'mapviz/mapviz_view' %}
