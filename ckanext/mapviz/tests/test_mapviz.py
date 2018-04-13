@@ -69,16 +69,12 @@ class TestMapvizPlugin(object):
 									 'on_same_domain': True}}
 			assert_false(self.plugin.can_view(data_dict))
 
-	# @helpers.change_config('ckan.plugins', 'resource_proxy')
 	def test_can_view_proxy(self):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : resource_format,
 									 'on_same_domain': False}}
-			from ckan.common import config
-			print('plugins : {0}'.format(config.get('ckan.plugins')))
-			print(self.plugin.proxy_enabled)
-			# self.plugin.proxy_enabled = True
+			self.plugin.proxy_enabled = True
 			assert_true(self.plugin.can_view(data_dict)) 
 
 	def test_cannot_view_proxy(self):
@@ -86,7 +82,22 @@ class TestMapvizPlugin(object):
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : resource_format,
 									 'on_same_domain': False}}
-			# print(self.plugin.proxy_enabled)
 			self.plugin.proxy_enabled = False
 			assert_false(self.plugin.can_view(data_dict)) 
-	# def test_
+	
+	#Test setup_template_variables
+
+	def test_setup_teamplate_variables_proxy_no_hbase(self):
+		self.plugin.proxy_enabled = True
+		for resource_format in ['geojson', 'osm']:
+			resource_url = 'http://dummy.link.data/data.'+resource_format
+			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
+										 'format' : resource_format,
+										 'on_same_domain': False,
+										 'hbase_enabled': ''}}
+			expected_data = {'resource_url':resource_url,
+							 'resource_format':resource_format}
+
+			result_data = self.plugin.setup_template_variables(data_dict=data_dict)
+
+
