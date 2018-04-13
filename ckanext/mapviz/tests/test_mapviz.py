@@ -142,7 +142,7 @@ class TestMapvizPlugin(object):
 										 'hbase_table': 'table',
 										 'hbase_filename': 'filename'}}
 			mock_osm = "<osm></osm>"
-			import ckanext.mapviz.utils.readHBase.readOSM
+			import utils.readHBase.readOSM
 			readOSM = mock.Mock(return_value=mock_osm)
 			# mock.patch('ckanext.mapviz.utils.readHBase.readOSM',return_value=mock_osm)
 			expected_data = {'resource_url':resource_url,
