@@ -18,6 +18,7 @@ class TestMapvizPlugin(object):
 	@classmethod
 	def setup_class(cls):
 		ckan.plugins.load('mapviz')
+		ckan.plugins.load('resource_proxy')
 		cls.plugin = ckan.plugins.get_plugin('mapviz')
 		if not ckan.plugins.plugin_loaded('image_view'):
 			ckan.plugins.load('image_view')
@@ -29,6 +30,7 @@ class TestMapvizPlugin(object):
 	def teardown_class(cls):
 		ckan.plugins.unload('mapviz')
 		ckan.plugins.unload('image_view')
+		ckan.plugins.load('resource_proxy')
 
 	def test_can_view_with_format(self):
 		for resource_format in ['geojson', 'osm']:
@@ -73,7 +75,7 @@ class TestMapvizPlugin(object):
 									 'format' : resource_format,
 									 'on_same_domain': False}}
 			# print(self.plugin.proxy_enabled)
-			self.plugin.proxy_enabled = True
+			# self.plugin.proxy_enabled = True
 			assert_true(self.plugin.can_view(data_dict)) 
 
 	def test_cannot_view_proxy(self):
