@@ -52,16 +52,20 @@ class TestMapvizPlugin(object):
         for resource_format in ['xml', 'txt']:
             data_dict = {'resource':{'url' : 'http://dummy.link.data',
                                      'format' : resource_format}}
+            print(resource_format, self.plugin.can_view(data_dict))
             assert not self.p.can_view(data_dict)
-    #     resource_view = factories.ResourceView(
-    #         resource_id=resource['id'],
-    #         view_type='mapviz')
+    
+    def test_can_view_from_url(self):
+        for resource_format in ['geojson', 'osm']:
+            data_dict = {'resource':{'url' : 'http://dummy.link.data.'+resource_format,
+                                     'format' : ''}}
+            print(resource_format, self.plugin.can_view(data_dict))
+            assert not self.p.can_view(data_dict)
 
-    #     url = url_for(controller='package', action='resource_read',
-    #                   id=dataset['name'], resource_id=resource['id'])
 
-    #     print
-
-    #     print(resource_view)
-        # assert_equal 
-
+    def test_can_view_from_url(self):
+        for resource_format in ['xml', 'txt']:
+            data_dict = {'resource':{'url' : 'http://dummy.link.data.'+resource_format,
+                                     'format' : ''}}
+            print(resource_format, self.plugin.can_view(data_dict))
+            assert not self.p.can_view(data_dict)
