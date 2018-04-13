@@ -12,7 +12,6 @@ log = getLogger(__name__)
 class MapvizPlugin(p.SingletonPlugin):
 	p.implements(p.IConfigurer)
 	p.implements(p.IResourceView, inherit=True)
-	# p.implements(p.ITemplateHelpers, inherit=True)
 
 	# IConfigurer
 
@@ -44,6 +43,13 @@ class MapvizPlugin(p.SingletonPlugin):
 	def can_view(self, data_dict): 
 		'''defines what types of files can use this view'''
 		format_lower = data_dict['resource'].get('format', '').lower()
+
+		# Guess from file extension
+        if not format_lower and data_dict['resource'].get('url'):
+            format_lower = self._guess_format_from_extension(
+                data_dict['resource'].get('url'))
+            print(format_lower)
+
 		correct_format = format_lower in ['geojson','osm']
 		return correct_format
 
@@ -64,7 +70,7 @@ class MapvizPlugin(p.SingletonPlugin):
 		hbase_osm = None
 		
 		if data_dict['resource']['hbase_filename']:
-			hbase_host = config.get('ckan.mapviz.hbase_host', "138.68.183.248")
+			hbase_host = config.get('ckan.mapviz.hbase_host', '')
 			hbase_osm = readOSM(hbase_host, data_dict['resource']['hbase_namespace'], data_dict['resource']['hbase_table'], data_dict['resource']['hbase_filename'])
 		return {'proxy_resource_url':proxy_resource_url,
 				'resource_format':format_lower,
