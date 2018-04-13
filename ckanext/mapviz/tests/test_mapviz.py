@@ -92,8 +92,10 @@ class TestMapvizPlugin(object):
 	def _mock_proxified_resource_url(data_dict):
 		return data_dict['resource'].get('url')
 
-	@mock.patch('ckanext.resourceproxy.plugin.get_proxified_resource_url',side_effect=_mock_proxified_resource_url)
+	# @mock.patch('ckanext.resourceproxy.plugin.get_proxified_resource_url',side_effect=_mock_proxified_resource_url)
 	def test_setup_teamplate_variables_proxy_no_hbase(self):
+		import ckanext.resourceproxy.plugin as proxy
+		proxy.get_proxified_resource_url = mock.Patch(side_effect=_mock_proxified_resource_url)
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
 		context = {'model': mock_model,
