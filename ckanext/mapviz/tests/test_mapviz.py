@@ -87,9 +87,14 @@ class TestMapvizPlugin(object):
 	
 	#Test setup_template_variables
 
+	def _mock_proxified_resource_url(data_dict):
+		return data_dict['resource'].get('url')
+
+	@mock.patch('ckanext.resourceproxy.plugin.get_proxified_resource_url',side_effect=_mock_proxified_resource_url)
 	def test_setup_teamplate_variables_proxy_no_hbase(self):
 		self.plugin.proxy_enabled = True
-		context = {'model': model,
+		mock_model = mock.MagicMock()
+		context = {'model': mock_model,
 				   'session': model.Session,
 				   'user': factories.User()}
 		for resource_format in ['geojson', 'osm']:
