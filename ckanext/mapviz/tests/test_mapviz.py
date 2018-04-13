@@ -91,7 +91,7 @@ class TestMapvizPlugin(object):
 		self.plugin.proxy_enabled = True
 		context = {'model': model,
 				   'session': model.Session,
-				   'user': factories.User()
+				   'user': factories.User()}
 		for resource_format in ['geojson', 'osm']:
 			resource_url = 'http://dummy.link.data/data.'+resource_format
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
