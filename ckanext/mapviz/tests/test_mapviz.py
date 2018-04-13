@@ -31,40 +31,26 @@ class TestMapvizPlugin(object):
 		ckan.plugins.unload('image_view')
 
 	def test_can_view_with_format(self):
-		# dataset = factories.Dataset()
-		# resource = factories.Resource(  
-		#     package_id=dataset['id'],
-		#     url='http://dummy.link.data', 
-		#     format='geojson')
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data',
 									 'format' : resource_format}}
-			# print(resource_format, self.plugin.can_view(data_dict))
 			assert_true(self.plugin.can_view(data_dict)) 
 
 	def test_cannot_view_with_format(self):
-		# dataset = factories.Dataset()
-		# resource = factories.Resource(  
-		#     package_id=dataset['id'],
-		#     url='http://dummy.link.data', 
-		#     format='xml')
 		for resource_format in ['xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data',
 									 'format' : resource_format}}
-			# print(resource_format, self.plugin.can_view(data_dict))
-			assert not self.plugin.can_view(data_dict)
+			assert_false(self.plugin.can_view(data_dict))
 	
 	def test_can_view_from_url(self):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : ''}}
-			# print(resource_format, self.plugin.can_view(data_dict))
-			assert self.plugin.can_view(data_dict)
+			assert_true(self.plugin.can_view(data_dict)) 
 
 
 	def test_cannot_view_from_url(self):
 		for resource_format in ['xml', 'txt']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : ''}}
-			# print(resource_format, self.plugin.can_view(data_dict))
-			assert not self.plugin.can_view(data_dict)
+			assert_false(self.plugin.can_view(data_dict))
