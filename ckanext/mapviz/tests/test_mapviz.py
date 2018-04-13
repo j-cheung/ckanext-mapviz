@@ -31,7 +31,7 @@ class TestMapvizPlugin(object):
 	def teardown_class(cls):
 		ckan.plugins.unload('mapviz')
 		ckan.plugins.unload('image_view')
-		ckan.plugins.load('resource_proxy')
+		ckan.plugins.unload('resource_proxy')
 
 	def test_can_view_with_format(self):
 		for resource_format in ['geojson', 'osm']:
