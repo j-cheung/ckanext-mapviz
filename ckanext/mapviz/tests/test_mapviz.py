@@ -137,7 +137,10 @@ class TestMapvizPlugin(object):
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 										 'format' : resource_format,
 										 'on_same_domain': False,
-										 'hbase_enabled': 'True'}}
+										 'hbase_enabled': 'True',
+										 'hbase_namespace': 'namespace',
+										 'hbase_table': 'table',
+										 'hbase_filename': 'filename'}}
 			mock_osm = "<osm></osm>"
 			import ckanext.mapviz.utils.readHBase as readHBase
 			readHBase.readOSM = mock.Mock(return_value=mock_osm)
