@@ -142,7 +142,8 @@ class TestMapvizPlugin(object):
 										 'hbase_table': 'table',
 										 'hbase_filename': 'filename'}}
 			mock_osm = "<osm></osm>"
-			readOSM = mock.Mock(return_value=mock_osm)
+			from utils.readHBase import readOSM
+			utils.readHreadOSM = mock.Mock(return_value=mock_osm)
 			expected_data = {'resource_url':resource_url,
 							 'resource_format':resource_format,
 							 'hbase_osm':mock_osm}
