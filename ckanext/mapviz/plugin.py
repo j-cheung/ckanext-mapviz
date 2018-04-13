@@ -47,12 +47,12 @@ class MapvizPlugin(p.SingletonPlugin):
 		'''defines what types of files can use this view'''
 		format_lower = data_dict['resource'].get('format', '').lower()
 
-		print("format is {0}".format(format_lower))
+		print('format is {0}'.format(format_lower))
 		# Guess from file extension
 		if not format_lower and data_dict['resource'].get('url'):
 			format_lower = self._guess_format_from_extension(
 				data_dict['resource'].get('url'))
-			print("guess from url format is {0}".format(format_lower))
+			print('guess from url format is {0}'.format(format_lower))
 
 		correct_format = format_lower in ['geojson','osm']
 		return correct_format
