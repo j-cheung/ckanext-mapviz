@@ -1,3 +1,6 @@
+import os
+import urlparse
+
 import ckan.plugins as p
 import ckan.plugins.toolkit as toolkit
 
@@ -49,7 +52,7 @@ class MapvizPlugin(p.SingletonPlugin):
 			format_lower = self._guess_format_from_extension(
 				data_dict['resource'].get('url'))
 			print(format_lower)
-			
+
 		correct_format = format_lower in ['geojson','osm']
 		return correct_format
 
