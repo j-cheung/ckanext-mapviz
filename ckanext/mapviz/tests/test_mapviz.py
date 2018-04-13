@@ -54,3 +54,9 @@ class TestMapvizPlugin(object):
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : ''}}
 			assert_false(self.plugin.can_view(data_dict))
+
+	def test_cannot_view_bad_url(self):
+		for resource_format in ['geojson','osm','xml', 'txt']:
+			data_dict = {'resource':{'url' : 'http://bad.link.data.'+resource_format,
+									 'format' : ''}}
+			assert_false(self.plugin.can_view(data_dict))
