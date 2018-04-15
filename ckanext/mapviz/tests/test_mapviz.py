@@ -27,6 +27,7 @@ class TestMapvizPlugin(object):
 			ckan.plugins.load('image_view')
 
 	def teardown(self):
+		print("teardown")
 		model.repo.rebuild_db()
 
 	@classmethod
