@@ -19,6 +19,7 @@ import mock
 class TestMapvizPlugin(object):
 	@classmethod
 	def setup_class(cls):
+		print("setup")
 		ckan.plugins.load('mapviz')
 		if not ckan.plugins.plugin_loaded('resource_proxy'):
 			ckan.plugins.load('resource_proxy')
@@ -32,6 +33,7 @@ class TestMapvizPlugin(object):
 
 	@classmethod
 	def teardown_class(cls):
+		print("teardown class")
 		ckan.plugins.unload('mapviz')
 		ckan.plugins.unload('image_view')
 		ckan.plugins.unload('resource_proxy')
