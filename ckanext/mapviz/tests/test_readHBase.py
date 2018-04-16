@@ -5,8 +5,10 @@ import xmltodict
 from deepdiff import DeepDiff 	
 import ckanext.mapviz.utils.readHBase as readHBase
 
+from ckan.common import config
+
 conn = None
-test_host = "138.68.183.248"
+test_host = config.get('ckan.mapviz.hbase_host', '')
 test_namespace = "mapviz_test"
 test_table_name = "osm"
 test_filename = "testfile.osm"
@@ -14,7 +16,6 @@ encoding = 'utf-8'
 
 def _encode_dict(data, encoding = 'utf-8'):
 	return {k.encode(encoding):v.encode(encoding) for k,v in data.items()}
-
 
 def _xml_equal(a, b):
 	"""
@@ -41,7 +42,6 @@ class TestReadHBase(object):
 			cls.conn.disable_table(test_table_name)
 			cls.conn.delete_table(test_table_name)
 		cls.conn.create_table(test_table_name,table_fams)
-
 
 	def teardown(self):
 		#Clear Test Table

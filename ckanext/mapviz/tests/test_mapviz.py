@@ -147,23 +147,3 @@ class TestMapvizPlugin(object):
 							 'hbase_osm':mock_osm}
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 			assert_equal(result_data, expected_data)
-
-	# def test_template(self):
-	# 	model.repo.rebuild_db()
-	# 	app = self._get_test_app()
-
- #        dataset = factories.Dataset()
-
- #        resource = factories.Resource(package_id=dataset['id'],
- #                                      url='http://some.website.html')
-
- #        resource_view = factories.ResourceView(
- #            resource_id=resource['id'],
- #            view_type='Mapviz')
-
- #        url = url_for(controller='package', action='resource_read',
- #                      id=dataset['name'], resource_id=resource['id'])
-
- #        response = app.get(url)
-
- #        print(response.body)
