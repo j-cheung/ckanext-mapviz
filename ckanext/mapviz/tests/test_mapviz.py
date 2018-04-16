@@ -126,7 +126,8 @@ class TestMapvizPlugin(object):
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 			assert_equal(result_data, expected_data)
 
-	def test_setup_template_variables_proxy_hbase(self):
+	@mock.patch('readHBase.readOSM')
+	def test_setup_template_variables_proxy_hbase(self, mock_readOSM):
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
 		context = {'model': mock_model}
@@ -142,8 +143,9 @@ class TestMapvizPlugin(object):
 										 'hbase_table': 'table',
 										 'hbase_filename': 'filename'}}
 			mock_osm = "<osm></osm>"
-			import ckanext.mapviz.utils.readHBase as readHBase
-			readHBase.readOSM = mock.Mock(return_value=mock_osm)
+			# import ckanext.mapviz.utils.readHBase as readHBase
+			# readHBase.readOSM = mock.Mock(return_value=mock_osm)
+			mock_readOSM.return_value = mock_osm
 			# mock.patch('ckanext.mapviz.utils.readHBase.readOSM',return_value=mock_osm)
 			expected_data = {'resource_url':resource_url,
 							 'resource_format':resource_format,
