@@ -30,6 +30,7 @@ def readOSM(host, namespace, table_name, filename):
 					tag.set('v',value)
 					node.append(tag)
 			root.append(node)
+		print(root)
 		#get ways
 		way_prefix = filename + '_way_'
 		for row_key, data in table.scan(row_prefix=way_prefix.encode(encoding)):
