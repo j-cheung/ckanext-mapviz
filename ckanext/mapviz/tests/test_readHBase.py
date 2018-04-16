@@ -107,7 +107,7 @@ class TestReadHBase(object):
 		table.put(row_id.encode(encoding), _encode_dict(row_data))
 
 		expectedOSM = "<osm><way id=\"38407529\" timestamp=\"2009-08-02T03:37:41Z\" user=\"Apo42\" visible=\"true\" version=\"1\"><nd ref=\"453966480\" /><nd ref=\"453966490\" /><nd ref=\"453966482\" /><nd ref=\"453966130\" /><nd ref=\"453966143\" /><nd ref=\"453966480\" /><tag k=\"park:type\" v=\"state_park\" /><tag k=\"csp:unitcode\" v=\"537\" /><tag k=\"admin_level\" v=\"4\" /><tag k=\"name\" v=\"Malibu Creek State Park\" /><tag k=\"csp:globalid\" v=\"{4A422954-089E-407F-A5B3-1E808F830EAA}\" /><tag k=\"leisure\" v=\"park\" /><tag k=\"attribution\" v=\"CASIL CSP_Opbdys072008\" /><tag k=\"note\" v=\"simplified with josm to reduce node #\" /><tag k=\"boundary\" v=\"national_park\" /></way></osm>"
-		actualOSM = readHBase.readOSM(test_host,"test_namespace",test_table_name,test_filename)
+		actualOSM = readHBase.readOSM(test_host,test_namespace,test_table_name,test_filename)
 		print(actualOSM)
 		assert_true(_xml_equal(expectedOSM,actualOSM))
 
