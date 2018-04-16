@@ -15,7 +15,7 @@ import ckan.logic as logic
 import ckan.tests.helpers as helpers
 
 import mock
-import ckanext.mapviz.utils.readHBase as readHBase
+import ckanext.mapviz.utils.readHBase
 
 class TestMapvizPlugin(object):
 	@classmethod
@@ -127,7 +127,7 @@ class TestMapvizPlugin(object):
 			result_data = self.plugin.setup_template_variables(context=context,data_dict=data_dict)
 			assert_equal(result_data, expected_data)
 
-	@mock.patch('readHBase.readOSM')
+	@mock.patch('ckanext.mapviz.utils.readHBase.readOSM')
 	def test_setup_template_variables_proxy_hbase(self, mock_readOSM):
 		self.plugin.proxy_enabled = True
 		mock_model = mock.MagicMock()
