@@ -7,6 +7,7 @@ def readOSM(host, namespace, table_name, filename):
 	table = conn.table(table_name)
 	print("tables " + str(conn.tables()))
 	print(table)
+	print("hi")
 
 	encoding = 'utf-8'
 
