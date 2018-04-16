@@ -76,11 +76,12 @@ class TestReadHBase(object):
 
 		expectedOSM = "<osm><node id=\"0\" action=\"create\" lat=\"51.513103\" lon=\"-0.131213\"  visible=\"true\"><tag k=\"station name\" v=\"Frith Street, Soho\" /><tag k=\"cycle\" v=\"496\" /><tag k=\"id\" v=\"None\" /></node></osm>"
 		actualOSM = readHBase.readOSM(test_host,test_namespace,test_table_name,test_filename)
+		print(actualOSM)
 		assert_true(_xml_equal(expectedOSM,actualOSM))
 
 	def test_readOSM_way(self):
 		table = self.conn.table(test_table_name)
-		row_id = test_filename + 'way' + '38407529'
+		row_id = test_filename + '_way_' + '38407529'
 		row_data = {
 			"way:id" : "38407529",
 			"way:timestamp" : "2009-08-02T03:37:41Z",
