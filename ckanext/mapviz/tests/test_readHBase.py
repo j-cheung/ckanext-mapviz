@@ -23,6 +23,7 @@ def _xml_equal(a, b):
 	Does not care about element order
 	"""
 	ddiff = DeepDiff(json.loads(json.dumps((xmltodict.parse(a)))),json.loads(json.dumps((xmltodict.parse(b)))), ignore_order=True)
+	print(ddiff)
 	return not ddiff
 
 class TestReadHBase(object):
