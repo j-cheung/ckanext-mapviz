@@ -15,6 +15,7 @@ import ckan.logic as logic
 import ckan.tests.helpers as helpers
 
 import mock
+import ckanext.mapviz.utils.readHBase as readHBase
 
 class TestMapvizPlugin(object):
 	@classmethod
