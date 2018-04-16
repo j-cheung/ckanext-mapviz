@@ -47,10 +47,10 @@ class TestReadHBase(object):
 		#Clear Test Table
 		batch_size = 100
 		table = self.conn.table(test_table_name)
-		batch = table.batch(batch_size = batch_size)
+		# batch = table.batch(batch_size = batch_size)
 		for row_key, _ in table.scan():
-			batch.delete(row_key.encode(encoding))
-		batch.send()
+			table.delete(row_key.encode(encoding))
+		# batch.send()
 		
 	@classmethod
 	def teardown_class(cls):
