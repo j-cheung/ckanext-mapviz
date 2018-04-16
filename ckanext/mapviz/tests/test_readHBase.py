@@ -135,5 +135,6 @@ class TestReadHBase(object):
 
 		expectedOSM = "<osm><relation id=\"11\" visible=\"true\" version=\"39\" changeset=\"44849789\" timestamp=\"2017-01-02T16:53:31Z\" user=\"fx99\" uid=\"130472\"><member type=\"way\" ref=\"8125151\" role=\"outer\"/><member type=\"way\" ref=\"249285853\" role=\"inner\"/><member type=\"way\" ref=\"249285856\" role=\"inner\"/><tag k=\"name\" v=\"Tween Pond\"/><tag k=\"natural\" v=\"water\"/><tag k=\"type\" v=\"multipolygon\"/></relation></osm>"
 		actualOSM = readHBase.readOSM(test_host,test_namespace,test_table_name,test_filename)
+		print(actualOSM)
 		assert_true(_xml_equal(expectedOSM,actualOSM))
 
