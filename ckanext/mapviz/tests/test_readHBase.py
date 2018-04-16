@@ -43,21 +43,21 @@ class TestReadHBase(object):
 		cls.conn.create_table(test_table_name,table_fams)
 
 
-	def teardown(self):
-		#Clear Test Table
-		batch_size = 100
-		table = self.conn.table(test_table_name)
-		# batch = table.batch(batch_size = batch_size)
-		for row_key, _ in table.scan():
-			table.delete(row_key.encode(encoding))
-		# batch.send()
+	# def teardown(self):
+		# #Clear Test Table
+		# batch_size = 100
+		# table = self.conn.table(test_table_name)
+		# # batch = table.batch(batch_size = batch_size)
+		# for row_key, _ in table.scan():
+		# 	table.delete(row_key.encode(encoding))
+		# # batch.send()
 		
 	@classmethod
 	def teardown_class(cls):
 		#Delete Test Table
-		if test_table_name in cls.conn.tables():
-			cls.conn.disable_table(test_table_name)
-			cls.conn.delete_table(test_table_name)
+		# if test_table_name in cls.conn.tables():
+		# 	cls.conn.disable_table(test_table_name)
+		# 	cls.conn.delete_table(test_table_name)
 		cls.conn.close()
 
 	def test_readOSM_node(self):
