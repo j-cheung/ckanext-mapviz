@@ -29,15 +29,15 @@ class TestReadHBase(object):
 	@classmethod
 	def setup_class(cls):
 		#Create Test Table
-		conn = happybase.Connection(host = test_host, table_prefix = test_namespace, table_prefix_separator = ":")
-		conn.open()
+		cls.conn = happybase.Connection(host = test_host, table_prefix = test_namespace, table_prefix_separator = ":")
+		cls.conn.open()
 		table_fams = {
 			'node': dict(),
 			'way': dict(),
 			'relation': dict(),
 			'tag': dict()
 		}
-		conn.create_table(test_table_name,table_fams)
+		cls.conn.create_table(test_table_name,table_fams)
 
 
 	def teardown(self):
@@ -52,11 +52,11 @@ class TestReadHBase(object):
 	@classmethod
 	def teardown_class(cls):
 		#Delete Test Table
-		conn.delete_table(test_table_name)
-		conn.close()
+		cls.conn.delete_table(test_table_name)
+		cls.conn.close()
 
 	def test_readOSM_node(self):
-		table = conn.table(test_table_name)
+		table = self.conn.table(test_table_name)
 		row_id = test_filename + '_node_' + '0'
 		row_data = {
 			"node:action" : "create",
