@@ -4,7 +4,7 @@ import happybase
 
 conn = None
 test_host = "138.68.183.248"
-test_namespace = "test"
+test_namespace = "mapviz_test"
 test_table_name = "osm"
 test_filename = "testfile.osm"
 encoding = 'utf-8'
