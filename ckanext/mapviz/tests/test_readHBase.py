@@ -1,6 +1,9 @@
 from nose.tools import assert_true, assert_false, assert_equal, assert_raises
-
 import happybase
+import json
+import xmltodict
+from deepdiff import DeepDiff 	
+import ckanext.mapviz.utils.readHBase as readHBase
 
 conn = None
 test_host = "138.68.183.248"
@@ -12,9 +15,6 @@ encoding = 'utf-8'
 def _encode_dict(data, encoding = 'utf-8'):
 	return {k.encode(encoding):v.encode(encoding) for k,v in data.items()}
 
-import json
-import xmltodict
-from deepdiff import DeepDiff 	
 
 def _xml_equal(a, b):
 	"""
@@ -46,7 +46,7 @@ class TestReadHBase(object):
 	def teardown(self):
 		#Clear Test Table
 		batch_size = 100
-		table = conn.table(test_table_name)
+		table = cls.conn.table(test_table_name)
 		batch = table.batch(batch_size = batch_size)
 		for row_key, _ in table.scan():
 			batch.delete(row_key.encode(encoding))
@@ -76,7 +76,7 @@ class TestReadHBase(object):
 
 		expectedOSM = "<osm><node id=\"0\" action=\"create\" lat=\"51.513103\" lon=\"-0.131213\"  visible=\"true\"><tag k=\"station name\" v=\"Frith Street, Soho\" /><tag k=\"cycle\" v=\"496\" /><tag k=\"id\" v=\"None\" /></node></osm>"
 
-		actualOSM = readOSM(test_host,test_namespace,test_table_name,test_filename)
+		actualOSM = readHBase.readOSM(test_host,test_namespace,test_table_name,test_filename)
 
 		assert_true(_xml_equal(expectedOSM,actualOSM))
 
