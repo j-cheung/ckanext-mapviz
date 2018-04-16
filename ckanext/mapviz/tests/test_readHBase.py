@@ -10,7 +10,7 @@ test_filename = "testfile.osm"
 encoding = 'utf-8'
 
 def _encode_dict(data, encoding = 'utf-8'):
-	return {k.encode(encoding), v.encode(encoding) for k,v in data.items()}
+	return {k.encode(encoding):v.encode(encoding) for k,v in data.items()}
 
 import json
 import xmltodict
