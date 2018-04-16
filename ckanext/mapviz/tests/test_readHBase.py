@@ -137,3 +137,65 @@ class TestReadHBase(object):
 		actualOSM = readHBase.readOSM(test_host,test_namespace,test_table_name,test_filename)
 		assert_true(_xml_equal(expectedOSM,actualOSM))
 
+	def test_readOSM_all(self):
+		table = self.conn.table(test_table_name)
+		row_id = test_filename + '_node_' + '0'
+		row_data = {
+			"node:action" : "create",
+			"node:lat" : "51.513103",
+			"node:lon" : "-0.131213",
+			"node:visible" : "true",
+			"tag:cycle" : "496",
+			"tag:id" : "None",
+			"tag:station name" : "Frith Street, Soho"
+		}
+		table.put(row_id.encode(encoding), _encode_dict(row_data))
+		row_id = test_filename + '_way_' + '38407529'
+		row_data = {
+			"way:timestamp" : "2009-08-02T03:37:41Z",
+			"way:user" : "Apo42",
+			"way:visible" : "true",
+			"way:version" : "1",
+			"way:nd_ref_0" : "453966480",
+			"way:nd_ref_1" : "453966490",
+			"way:nd_ref_2" : "453966482",
+			"way:nd_ref_3" : "453966130",
+			"way:nd_ref_4" : "453966143",
+			"way:nd_ref_5" : "453966480",
+			"tag:park:type" : "state_park",
+			"tag:csp:unitcode" : "537",
+			"tag:admin_level" : "4",
+			"tag:name" : "Malibu Creek State Park",
+			"tag:csp:globalid" : "{4A422954-089E-407F-A5B3-1E808F830EAA}",
+			"tag:leisure" : "park",
+			"tag:attribution" : "CASIL CSP_Opbdys072008",
+			"tag:note" : "simplified with josm to reduce node #",
+			"tag:boundary" : "national_park"
+		}
+		table.put(row_id.encode(encoding), _encode_dict(row_data))
+		row_id = test_filename + '_relation_' + '11'
+		row_data = {
+			"relation:visible" : "true",
+			"relation:version" : "39",
+			"relation:changeset" : "44849789",
+			"relation:timestamp" : "2017-01-02T16:53:31Z",
+			"relation:user" : "fx99",
+			"relation:uid" : "130472",
+			"relation:mem_type_0" : "way",
+			"relation:mem_ref_0" : "8125151",
+			"relation:mem_role_0" : "outer",
+			"relation:mem_type_1" : "way",
+			"relation:mem_ref_1" : "249285853",
+			"relation:mem_role_1" : "inner",
+			"relation:mem_type_2" : "way",
+			"relation:mem_ref_2" : "249285856",
+			"relation:mem_role_2" : "inner",
+			"tag:name" : "Tween Pond",
+			"tag:natural" : "water",
+			"tag:type" : "multipolygon"
+		}
+		table.put(row_id.encode(encoding), _encode_dict(row_data))
+
+		expectedOSM = "<osm><node id=\"0\" action=\"create\" lat=\"51.513103\" lon=\"-0.131213\"  visible=\"true\"><tag k=\"station name\" v=\"Frith Street, Soho\" /><tag k=\"cycle\" v=\"496\" /><tag k=\"id\" v=\"None\" /></node><way id=\"38407529\" timestamp=\"2009-08-02T03:37:41Z\" user=\"Apo42\" visible=\"true\" version=\"1\"><nd ref=\"453966480\" /><nd ref=\"453966490\" /><nd ref=\"453966482\" /><nd ref=\"453966130\" /><nd ref=\"453966143\" /><nd ref=\"453966480\" /><tag k=\"park:type\" v=\"state_park\" /><tag k=\"csp:unitcode\" v=\"537\" /><tag k=\"admin_level\" v=\"4\" /><tag k=\"name\" v=\"Malibu Creek State Park\" /><tag k=\"csp:globalid\" v=\"{4A422954-089E-407F-A5B3-1E808F830EAA}\" /><tag k=\"leisure\" v=\"park\" /><tag k=\"attribution\" v=\"CASIL CSP_Opbdys072008\" /><tag k=\"note\" v=\"simplified with josm to reduce node #\" /><tag k=\"boundary\" v=\"national_park\" /></way><relation id=\"11\" visible=\"true\" version=\"39\" changeset=\"44849789\" timestamp=\"2017-01-02T16:53:31Z\" user=\"fx99\" uid=\"130472\"><member type=\"way\" ref=\"8125151\" role=\"outer\"/><member type=\"way\" ref=\"249285853\" role=\"inner\"/><member type=\"way\" ref=\"249285856\" role=\"inner\"/><tag k=\"name\" v=\"Tween Pond\"/><tag k=\"natural\" v=\"water\"/><tag k=\"type\" v=\"multipolygon\"/></relation></osm>"
+		actualOSM = readHBase.readOSM(test_host,test_namespace,test_table_name,test_filename)
+		assert_true(_xml_equal(expectedOSM,actualOSM))
