@@ -3,7 +3,7 @@ from nose.tools import assert_true, assert_false, assert_equal, assert_raises
 import happybase
 
 conn = None
-test_host = "udltest2.cs.ucl.ac.uk"
+test_host = "138.68.183.248"
 test_namespace = "test"
 test_table_name = "osm"
 test_filename = "testfile.osm"
