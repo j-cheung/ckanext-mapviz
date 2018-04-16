@@ -3,7 +3,7 @@ from nose.tools import assert_true, assert_false, assert_equal, assert_raises
 import happybase
 
 conn = None
-test_host = ""
+test_host = "udltest2.cs.ucl.ac.uk"
 test_namespace = "test"
 test_table_name = "osm"
 test_filename = "testfile.osm"
@@ -47,11 +47,13 @@ class TestReadHBase(object):
 		batch = table.batch(batch_size = batch_size)
 		for row_key, _ in table.scan():
 			batch.delete(row_key.encode(encoding))
+		batch.send()
 		
 	@classmethod
 	def teardown_class(cls):
 		#Delete Test Table
 		conn.delete_table(test_table_name)
+		conn.close()
 
 	def test_readOSM_node(self):
 		table = conn.table(test_table_name)
