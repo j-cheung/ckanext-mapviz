@@ -5,7 +5,7 @@ def readOSM(host, namespace, table_name, filename):
 	conn = happybase.Connection(host = host, table_prefix = namespace, table_prefix_separator = ":")
 	conn.open()
 	table = conn.table(table_name)
-	print(conn.tables())
+	print("tables " + str(conn.tables()))
 
 	encoding = 'utf-8'
 
@@ -30,7 +30,6 @@ def readOSM(host, namespace, table_name, filename):
 					tag.set('v',value)
 					node.append(tag)
 			root.append(node)
-		print(root)
 		#get ways
 		way_prefix = filename + '_way_'
 		for row_key, data in table.scan(row_prefix=way_prefix.encode(encoding)):
