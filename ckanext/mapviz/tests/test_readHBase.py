@@ -82,7 +82,7 @@ class TestReadHBase(object):
 		table = self.conn.table(test_table_name)
 		row_id = test_filename + 'way' + '38407529'
 		row_data = {
-			"way:id" : "38407529"
+			"way:id" : "38407529",
 			"way:timestamp" : "2009-08-02T03:37:41Z",
 			"way:user" : "Apo42",
 			"way:visible" : "true",
@@ -101,7 +101,7 @@ class TestReadHBase(object):
 			"tag:leisure" : "park",
 			"tag:attribution" : "CASIL CSP_Opbdys072008",
 			"tag:note" : "simplified with josm to reduce node #",
-			"tag:boundary" : "national_park",
+			"tag:boundary" : "national_park"
 		}
 		table.put(row_id.encode(encoding), _encode_dict(row_data))
 
