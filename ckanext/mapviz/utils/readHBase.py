@@ -1,4 +1,6 @@
 import happybase
+from logging import getLogger
+log = getLogger(__name__)
 
 def readOSM(host, namespace, table_name, filename):
 
@@ -8,6 +10,7 @@ def readOSM(host, namespace, table_name, filename):
 	print("tables " + str(conn.tables()))
 	print(table)
 	print("hi")
+	log.debug(table)
 
 	encoding = 'utf-8'
 
