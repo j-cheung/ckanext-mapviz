@@ -20,7 +20,6 @@ import ckanext.mapviz.utils.readHBase
 class TestMapvizPlugin(object):
 	@classmethod
 	def setup_class(cls):
-		print("setup")
 		ckan.plugins.load('mapviz')
 		if not ckan.plugins.plugin_loaded('resource_proxy'):
 			ckan.plugins.load('resource_proxy')
@@ -29,12 +28,10 @@ class TestMapvizPlugin(object):
 			ckan.plugins.load('image_view')
 
 	def teardown(self):
-		print("teardown")
 		model.repo.rebuild_db()
 
 	@classmethod
 	def teardown_class(cls):
-		print("teardown class")
 		ckan.plugins.unload('mapviz')
 		ckan.plugins.unload('image_view')
 		ckan.plugins.unload('resource_proxy')
@@ -144,10 +141,7 @@ class TestMapvizPlugin(object):
 										 'hbase_table': 'table',
 										 'hbase_filename': 'filename'}}
 			mock_osm = "<osm></osm>"
-			# import ckanext.mapviz.utils.readHBase as readHBase
-			# readHBase.readOSM = mock.Mock(return_value=mock_osm)
 			mock_readOSM.return_value = mock_osm
-			# mock.patch('ckanext.mapviz.utils.readHBase.readOSM',return_value=mock_osm)
 			expected_data = {'resource_url':resource_url,
 							 'resource_format':resource_format,
 							 'hbase_osm':mock_osm}

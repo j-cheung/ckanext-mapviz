@@ -7,10 +7,6 @@ def readOSM(host, namespace, table_name, filename):
 	conn = happybase.Connection(host = host, table_prefix = namespace, table_prefix_separator = ":")
 	conn.open()
 	table = conn.table(table_name)
-	print("tables " + str(conn.tables()))
-	print(table)
-	print("hi")
-	log.debug(table)
 
 	encoding = 'utf-8'
 
