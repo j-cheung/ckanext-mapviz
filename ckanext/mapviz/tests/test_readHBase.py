@@ -37,6 +37,8 @@ class TestReadHBase(object):
 			'relation': dict(),
 			'tag': dict()
 		}
+		if test_table_name in cls.conn.tables():
+			cls.conn.delete_table(test_table_name)
 		cls.conn.create_table(test_table_name,table_fams)
 
 
