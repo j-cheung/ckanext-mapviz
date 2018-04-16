@@ -38,6 +38,7 @@ class TestReadHBase(object):
 			'tag': dict()
 		}
 		if test_table_name in cls.conn.tables():
+			cls.conn.disable_table(test_table_name)
 			cls.conn.delete_table(test_table_name)
 		cls.conn.create_table(test_table_name,table_fams)
 
@@ -54,7 +55,9 @@ class TestReadHBase(object):
 	@classmethod
 	def teardown_class(cls):
 		#Delete Test Table
-		cls.conn.delete_table(test_table_name)
+		if test_table_name in cls.conn.tables():
+			cls.conn.disable_table(test_table_name)
+			cls.conn.delete_table(test_table_name)
 		cls.conn.close()
 
 	def test_readOSM_node(self):
