@@ -62,7 +62,7 @@ ckan.module('mapviz-leaflet',function(jQuery) {
 			//if geojson
 			else if(resource_format == 'geojson'){
 				console.log("geojson")
-				jQuery.getJSON(this.options.proxy_resource_url)
+				jQuery.getJSON(this.options.resource_url)
 				.done(
 					function(data){
 						console.log("success")
