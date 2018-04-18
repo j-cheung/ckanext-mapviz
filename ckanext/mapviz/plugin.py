@@ -73,7 +73,7 @@ class MapvizPlugin(p.SingletonPlugin):
 		else:
 			resource_url = data_dict['resource'].get('url')
 		hbase_osm = None		
-		if data_dict['resource']['hbase_enabled']:
+		if data_dict['resource'].get('hbase_enabled',''):
 			log.info('hbase enabled')
 			hbase_host = config.get('ckan.mapviz.hbase_host', '')
 			import utils.readHBase as readHBase

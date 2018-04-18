@@ -72,7 +72,7 @@ class TestMapvizPlugin(object):
 									 'on_same_domain': True}}
 			assert_false(self.plugin.can_view(data_dict))
 
-	def test_can_view_proxy(self):
+	def test_can_view_proxy_enabled(self):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : resource_format,
@@ -80,7 +80,7 @@ class TestMapvizPlugin(object):
 			self.plugin.proxy_enabled = True
 			assert_true(self.plugin.can_view(data_dict)) 
 
-	def test_cannot_view_proxy(self):
+	def test_cannot_view_proxy_disabled(self):
 		for resource_format in ['geojson', 'osm']:
 			data_dict = {'resource':{'url' : 'http://dummy.link.data/data.'+resource_format,
 									 'format' : resource_format,
